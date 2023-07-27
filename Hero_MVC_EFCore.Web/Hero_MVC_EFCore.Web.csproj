@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Service\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Hero_MVC_EFCore.DAL\Hero_MVC_EFCore.DAL.csproj" />
+    <ProjectReference Include="..\Hero_MVC_EFCore.Domain\Hero_MVC_EFCore.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
