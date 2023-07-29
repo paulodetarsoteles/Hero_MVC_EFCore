@@ -1,7 +1,6 @@
 ﻿using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.ContentModel;
 
 namespace Hero_MVC_EFCore.Web.Controllers
 {

@@ -81,7 +81,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
                 _dbContext.Set<T>().Remove(entity);
                 _dbContext.SaveChanges();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
