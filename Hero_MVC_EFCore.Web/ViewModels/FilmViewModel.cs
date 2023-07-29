@@ -16,7 +16,8 @@ namespace Hero_MVC_EFCore.Web.ViewModels
 
         [Required]
         [Display(Name = "Nota")]
-        public int Rate { get; set; } = 7;
+        [RegularExpression("([0-1-2-3-4-5-6-7-8-9-10])", ErrorMessage = "Digíte uma nota válida de 0 a 10")]
+        public int Rate { get; set; }
 
         [NotMapped]
         [Display(Name = "Heróis")]
