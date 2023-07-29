@@ -5,6 +5,6 @@
         public int PowerId { get; set; }
         public string Name { get; set; }
         public int HeroId { get; set; }
-        public Hero MyProperty { get; set; }
+        public Hero Hero { get; set; }
     }
 }
