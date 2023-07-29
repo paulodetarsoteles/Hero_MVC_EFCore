@@ -33,6 +33,16 @@ namespace Hero_MVC_EFCore.Web.Service
             throw new NotImplementedException();
         }
 
+        public bool HasPower()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CountFilms()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Insert(HeroViewModel viewModel)
         {
             throw new NotImplementedException();

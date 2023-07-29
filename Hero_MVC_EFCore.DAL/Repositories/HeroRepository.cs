@@ -21,5 +21,15 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public bool HasPower()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CountFilms()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

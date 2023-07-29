@@ -6,5 +6,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Interfaces
     {
         List<Power> GetPowers();
         SecretIdentity GetSecretIdentity();
+        bool HasPower();
+        int CountFilms();
     }
 }

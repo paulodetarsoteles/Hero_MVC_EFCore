@@ -4,21 +4,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hero_MVC_EFCore.Web.ViewModels
 {
-    public class PowerViewModel
+    public class FilmViewModel
     {
         [Key]
-        [Display(Name = "Código do poder")]
-        public int PowerId { get; set; }
+        [Display(Name = "Código do filme")]
+        public int FilmId { get; set; }
 
         [Required]
-        [Display(Name = "Nome")]
+        [Display(Name = "Filme")]
         public string Name { get; set; }
 
-        [Display(Name = "Código do herói")]
-        public int HeroId { get; set; }
+        [Required]
+        [Display(Name = "Nota")]
+        public int Rate { get; set; } = 7;
 
         [NotMapped]
         [Display(Name = "Heróis")]
-        public Hero Hero { get; set; }
+        public List<Hero> Heroes { get; set; }
     }
 }
