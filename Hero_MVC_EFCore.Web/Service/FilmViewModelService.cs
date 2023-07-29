@@ -1,10 +1,18 @@
-﻿using Hero_MVC_EFCore.Web.Service.Interfaces;
+﻿using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
+using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
 
 namespace Hero_MVC_EFCore.Web.Service
 {
     public class FilmViewModelService : IFilmViewModelService
     {
+        private readonly IFilmRepository _filmRepository;
+
+        public FilmViewModelService(IFilmRepository filmRepository)
+        {
+            _filmRepository = filmRepository;
+        }
+
         public List<FilmViewModel> GetAll()
         {
             throw new NotImplementedException();
