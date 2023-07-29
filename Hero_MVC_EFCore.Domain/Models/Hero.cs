@@ -8,5 +8,8 @@
         public string Comments { get; set; }
         public DateTime UpdateDate { get; set; }
         public List<Power> Powers { get; set; }
+        public int SecretIdentityId { get; set; }
+        public SecretIdentity SecretIdentity { get; set; }
+        public List<Film> Films { get; set; }
     }
 }
