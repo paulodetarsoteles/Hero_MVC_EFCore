@@ -4,46 +4,36 @@ using Hero_MVC_EFCore.Web.ViewModels;
 
 namespace Hero_MVC_EFCore.Web.Service
 {
-    public class HeroViewModelService : IHeroViewModelService
+    public class FilmViewModelService : IFilmViewModelService
     {
-        private readonly IHeroRepository _heroRepository;
+        private readonly IFilmRepository _filmRepository;
 
-        public HeroViewModelService(IHeroRepository heroRepository)
+        public FilmViewModelService(IFilmRepository filmRepository)
         {
-            _heroRepository = heroRepository;
+            _filmRepository = filmRepository;
         }
 
-        public List<HeroViewModel> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public HeroViewModel GetById(int id)
+        public List<FilmViewModel> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public List<PowerViewModel> GetPowers()
+        public FilmViewModel GetById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public SecretIdentityViewModel GetSecretIdentity()
+        public List<HeroViewModel> GetHeroes()
         {
             throw new NotImplementedException();
         }
 
-        public bool HasPower()
+        public bool IsPresent(HeroViewModel viewModel)
         {
             throw new NotImplementedException();
         }
 
-        public int CountFilms()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(HeroViewModel viewModel)
+        public void Insert(FilmViewModel viewModel)
         {
             throw new NotImplementedException();
         }
@@ -52,7 +42,7 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             throw new NotImplementedException();
         }
-        
+
         public void Delete(int id)
         {
             throw new NotImplementedException();

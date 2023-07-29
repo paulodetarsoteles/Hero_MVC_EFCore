@@ -4,6 +4,7 @@ using Hero_MVC_EFCore.DAL.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hero_MVC_EFCore.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230729015430_Relacao_Secret_com_Hero")]
+    partial class Relacao_Secret_com_Hero
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,40 +24,6 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("FilmHero", b =>
-                {
-                    b.Property<int>("FilmsFilmId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HeroesHeroId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FilmsFilmId", "HeroesHeroId");
-
-                    b.HasIndex("HeroesHeroId");
-
-                    b.ToTable("FilmHero");
-                });
-
-            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Film", b =>
-                {
-                    b.Property<int>("FilmId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FilmId"));
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Rate")
-                        .HasColumnType("int");
-
-                    b.HasKey("FilmId");
-
-                    b.ToTable("Films");
-                });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Hero", b =>
                 {
@@ -128,21 +97,6 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                     b.HasKey("SecretIdentityId");
 
                     b.ToTable("SecretIdentities");
-                });
-
-            modelBuilder.Entity("FilmHero", b =>
-                {
-                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Film", null)
-                        .WithMany()
-                        .HasForeignKey("FilmsFilmId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Hero", null)
-                        .WithMany()
-                        .HasForeignKey("HeroesHeroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Hero", b =>

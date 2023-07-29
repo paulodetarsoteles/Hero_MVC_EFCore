@@ -5,7 +5,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
 {
     public class BaseRepository<T> where T : class
     {
-        protected readonly DataContext _dbContext;
+        public readonly DataContext _dbContext;
 
         public BaseRepository(DataContext dbContext)
         {

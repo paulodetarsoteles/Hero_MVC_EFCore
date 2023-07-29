@@ -13,5 +13,6 @@ namespace Hero_MVC_EFCore.DAL.Data
         public DbSet<SecretIdentity> SecretIdentities { get; set; }
         public DbSet<Hero> Heroes { get; set; }
         public DbSet<Power> Powers { get; set; }
+        public DbSet<Film> Films { get; set; }
     }
 }

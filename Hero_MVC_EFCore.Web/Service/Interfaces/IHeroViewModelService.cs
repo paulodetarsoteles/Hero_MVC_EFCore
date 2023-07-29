@@ -8,9 +8,10 @@ namespace Hero_MVC_EFCore.Web.Service.Interfaces
         HeroViewModel GetById(int id);
         List<PowerViewModel> GetPowers();
         SecretIdentityViewModel GetSecretIdentity();
+        bool HasPower();
+        int CountFilms();
         void Insert(HeroViewModel viewModel);
         void Update(HeroViewModel viewModel);
         void Delete(int id);
-
     }
 }
