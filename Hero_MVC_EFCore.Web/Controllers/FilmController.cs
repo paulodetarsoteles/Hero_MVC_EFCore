@@ -61,6 +61,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
             {
                 viewModel.Rate = Convert.ToInt32(viewModel.Rate);
                 _service.Insert(viewModel);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -108,6 +109,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
             try
             {
                 var viewmodel = _service.GetById(id);
+
                 return View(viewmodel);
             }
             catch (Exception)

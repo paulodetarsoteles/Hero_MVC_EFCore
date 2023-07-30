@@ -9,6 +9,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Interfaces
         void Insert(Film entity);
         void Update(Film entity);
         void Delete(int id);
+
         List<Hero> GetHeroes(Film film);
         bool IsPresent(Film film, Hero hero);
     }

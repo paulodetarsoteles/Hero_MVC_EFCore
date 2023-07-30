@@ -9,6 +9,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Interfaces
         void Insert(Power entity);
         void Update(Power entity);
         void Delete(int id);
+
         Hero GetHero(Power entity);
     }
 }
