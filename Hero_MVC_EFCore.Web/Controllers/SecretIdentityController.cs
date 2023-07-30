@@ -18,7 +18,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                return View();
+                return View(_identityViewModelService.GetAll());
             }
             catch
             {
@@ -31,7 +31,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                return View();
+                return View(_identityViewModelService.GetById(id));
             }
             catch
             {
@@ -59,6 +59,11 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return View(viewModel);
+
+                _identityViewModelService.Insert(viewModel);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -72,7 +77,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                return View();
+                return View(_identityViewModelService.GetById(id));
             }
             catch
             {
@@ -87,6 +92,8 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
+                _identityViewModelService.Update(viewModel);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -100,7 +107,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                return View();
+                return View(_identityViewModelService.GetById(id));
             }
             catch
             {
@@ -115,6 +122,11 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return View();
+
+                _identityViewModelService.Delete(id);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

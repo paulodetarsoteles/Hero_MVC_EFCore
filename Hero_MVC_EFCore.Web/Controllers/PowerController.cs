@@ -18,7 +18,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                return View();
+                return View(_powerViewModelService.GetAll());
             }
             catch (Exception)
             {
@@ -31,7 +31,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                return View();
+                return View(_powerViewModelService.GetById(id));
             }
             catch
             {
@@ -59,6 +59,11 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return View(viewModel);
+
+                _powerViewModelService.Insert(viewModel);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -72,7 +77,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                return View();
+                return View(_powerViewModelService.GetById(id));
             }
             catch
             {
@@ -87,6 +92,11 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return View(viewModel);
+
+                _powerViewModelService.Update(viewModel);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -100,7 +110,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                return View();
+                return View(_powerViewModelService.GetById(id));
             }
             catch
             {
@@ -111,10 +121,15 @@ namespace Hero_MVC_EFCore.Web.Controllers
         // POST: PowerController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, IFormCollection viewModel)
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return View(viewModel);
+
+                _powerViewModelService.Delete(id);
+
                 return RedirectToAction(nameof(Index));
             }
             catch

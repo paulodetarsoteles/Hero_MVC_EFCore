@@ -59,7 +59,9 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                viewModel.Rate = Convert.ToInt32(viewModel.Rate);
+                if (!ModelState.IsValid)
+                    return View(viewModel);
+
                 _service.Insert(viewModel);
 
                 return RedirectToAction(nameof(Index));
