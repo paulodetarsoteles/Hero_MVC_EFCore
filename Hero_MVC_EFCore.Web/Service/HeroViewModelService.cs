@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
+using Hero_MVC_EFCore.Domain.Models;
 using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
+using System.Reflection;
 
 namespace Hero_MVC_EFCore.Web.Service
 {
@@ -20,12 +22,16 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var result = _heroRepository.GetAll();
+
+                if (result == null)
+                    throw new Exception("A lista de heróis retornou nula.");
+
+                return _mapper.Map<List<HeroViewModel>>(result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
             }
         }
 
@@ -33,14 +39,58 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var result = _heroRepository.GetById(id);
+
+                if (result is null)
+                    throw new Exception("Nenhum herói encontrado com este Id.");
+
+                return _mapper.Map<HeroViewModel>(result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
             }
         }
+
+        public void Insert(HeroViewModel viewModel)
+        {
+            try
+            {
+                var entity = _mapper.Map<Hero>(viewModel);
+                _heroRepository.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+            }
+        }
+
+        public void Update(HeroViewModel viewModel)
+        {
+            try
+            {
+                var entity = _mapper.Map<Hero>(viewModel);
+                _heroRepository.Update(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+            }
+        }
+
+        public void Delete(int id)
+        {
+            try
+            {
+                _heroRepository.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+            }
+        }
+
+        #region Especific Methods
 
         public List<PowerViewModel> GetPowers()
         {
@@ -50,8 +100,7 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
             }
         }
 
@@ -63,8 +112,7 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
             }
         }
 
@@ -76,8 +124,7 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
             }
         }
 
@@ -89,48 +136,10 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
             }
         }
 
-        public void Insert(HeroViewModel viewModel)
-        {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
-            }
-        }
-
-        public void Update(HeroViewModel viewModel)
-        {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
-            }
-        }
-
-        public void Delete(int id)
-        {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
-            }
-        }
+        #endregion
     }
 }

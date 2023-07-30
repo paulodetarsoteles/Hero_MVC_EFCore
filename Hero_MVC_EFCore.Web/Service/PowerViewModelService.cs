@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
+using Hero_MVC_EFCore.Domain.Models;
 using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
+using System.Reflection;
 
 namespace Hero_MVC_EFCore.Web.Service
 {
@@ -20,12 +22,16 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var result = _powerRepository.GetAll();
+
+                if (result is null)
+                    throw new Exception("Lista de poderes retornou nula.");
+
+                return _mapper.Map<List<PowerViewModel>>(result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - {ex.Message}");
             }
         }
 
@@ -33,14 +39,58 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var result = _powerRepository.GetById(id);
+
+                if (result is null)
+                    throw new Exception("Não foi encontrado poder com este Id.");
+
+                return _mapper.Map<PowerViewModel>(result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
             }
         }
+
+        public void Insert(PowerViewModel viewModel)
+        {
+            try
+            {
+                var entity = _mapper.Map<Power>(viewModel);
+                _powerRepository.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+            }
+        }
+
+        public void Update(PowerViewModel viewModel)
+        {
+            try
+            {
+                var entity = _mapper.Map<Power>(viewModel);
+                _powerRepository.Update(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+            }
+        }
+
+        public void Delete(int id)
+        {
+            try
+            {
+                _powerRepository.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+            }
+        }
+
+        #region Especific Methods
 
         public HeroViewModel GetHero()
         {
@@ -50,48 +100,10 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - {ex.Message}");
             }
         }
 
-        public void Insert(PowerViewModel viewModel)
-        {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
-            }
-        }
-
-        public void Update(PowerViewModel viewModel)
-        {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
-            }
-        }
-
-        public void Delete(int id)
-        {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao XXX - {ex.Message}");
-                throw new Exception($"Erro ao XXX - {ex.Message}");
-            }
-        }
+        #endregion
     }
 }

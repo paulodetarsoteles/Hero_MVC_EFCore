@@ -6,9 +6,10 @@ namespace Hero_MVC_EFCore.Web.Service.Interfaces
     {
         List<SecretIdentityViewModel> GetAll();
         SecretIdentityViewModel GetById(int id);
-        HeroViewModel GetHero();
         void Insert(SecretIdentityViewModel viewModel);
         void Update(SecretIdentityViewModel viewModel);
         void Delete(int id);
+
+        HeroViewModel GetHero();
     }
 }
