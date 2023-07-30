@@ -1,61 +1,145 @@
-﻿using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
+﻿using AutoMapper;
+using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
+using Hero_MVC_EFCore.Domain.Models;
 using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
+using System.Reflection;
 
 namespace Hero_MVC_EFCore.Web.Service
 {
     public class HeroViewModelService : IHeroViewModelService
     {
         private readonly IHeroRepository _heroRepository;
+        private readonly IMapper _mapper;
 
-        public HeroViewModelService(IHeroRepository heroRepository)
+        public HeroViewModelService(IHeroRepository heroRepository, IMapper mapper)
         {
             _heroRepository = heroRepository;
+            _mapper = mapper;
         }
 
         public List<HeroViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = _heroRepository.GetAll();
+
+                if (result == null)
+                    throw new Exception("A lista de heróis retornou nula.");
+
+                return _mapper.Map<List<HeroViewModel>>(result);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
         }
 
         public HeroViewModel GetById(int id)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                var result = _heroRepository.GetById(id);
 
-        public List<PowerViewModel> GetPowers()
-        {
-            throw new NotImplementedException();
-        }
+                if (result is null)
+                    throw new Exception("Nenhum herói encontrado com este Id.");
 
-        public SecretIdentityViewModel GetSecretIdentity()
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool HasPower()
-        {
-            throw new NotImplementedException();
-        }
-
-        public int CountFilms()
-        {
-            throw new NotImplementedException();
+                return _mapper.Map<HeroViewModel>(result);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+            }
         }
 
         public void Insert(HeroViewModel viewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entity = _mapper.Map<Hero>(viewModel);
+                _heroRepository.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+            }
         }
 
         public void Update(HeroViewModel viewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entity = _mapper.Map<Hero>(viewModel);
+                _heroRepository.Update(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+            }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _heroRepository.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+            }
         }
+
+        #region Especific Methods
+
+        public List<PowerViewModel> GetPowers(HeroViewModel viewModel)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
+        public SecretIdentityViewModel GetSecretIdentity(HeroViewModel viewModel)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
+        public bool HasPower(HeroViewModel viewModel)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
+        public int CountFilms(HeroViewModel viewModel)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
+        #endregion
     }
 }

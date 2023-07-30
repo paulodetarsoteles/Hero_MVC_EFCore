@@ -12,7 +12,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 
         }
 
-        public Hero GetHero()
+        public Hero GetHero(SecretIdentity entity)
         {
             throw new NotImplementedException();
         }

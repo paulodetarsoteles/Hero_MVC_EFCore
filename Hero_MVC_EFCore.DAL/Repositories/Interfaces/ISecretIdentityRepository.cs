@@ -9,6 +9,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Interfaces
         void Insert(SecretIdentity entity);
         void Update(SecretIdentity entity);
         void Delete(int id);
-        Hero GetHero();
+
+        Hero GetHero(SecretIdentity entity);
     }
 }

@@ -1,0 +1,31 @@
+﻿@model PowerViewModel
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Detalhes</h1>
+
+<div>
+    <h4>Dados do poder/arma</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PowerId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PowerId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<br />
+<div>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.PowerId }) |
+    <a asp-action="Index">Voltar</a>
+</div>

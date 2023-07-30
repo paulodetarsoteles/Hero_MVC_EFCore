@@ -1,46 +1,109 @@
-﻿using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
+﻿using AutoMapper;
+using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
+using Hero_MVC_EFCore.Domain.Models;
 using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
+using System.Reflection;
 
 namespace Hero_MVC_EFCore.Web.Service
 {
     public class SecretIdentityViewModelService : ISecretIdentityViewModelService
     {
         private readonly ISecretIdentityRepository _secretIdentityRepository;
+        private readonly IMapper _mapper;
 
-        public SecretIdentityViewModelService(ISecretIdentityRepository secretIdentityRepository)
+        public SecretIdentityViewModelService(ISecretIdentityRepository secretIdentityRepository, IMapper mapper)
         {
             _secretIdentityRepository = secretIdentityRepository;
+            _mapper = mapper;
         }
 
         public List<SecretIdentityViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = _secretIdentityRepository.GetAll();
+
+                if (result == null)
+                    throw new Exception("Lista de identidades secretas retornou nula.");
+
+                return _mapper.Map<List<SecretIdentityViewModel>>(result);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
         }
 
         public SecretIdentityViewModel GetById(int id)
         {
-            throw new NotImplementedException();
-        }
+            try
+            {
+                var result = _secretIdentityRepository.GetById(id);
 
-        public HeroViewModel GetHero()
-        {
-            throw new NotImplementedException();
+                if (result is null)
+                    throw new Exception("Não foi encontrado identidade secreta com este Id.");
+
+                return _mapper.Map<SecretIdentityViewModel>(result);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+            }
         }
 
         public void Insert(SecretIdentityViewModel viewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entity = _mapper.Map<SecretIdentity>(viewModel);
+                _secretIdentityRepository.Insert(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+            }
         }
 
         public void Update(SecretIdentityViewModel viewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var entity = _mapper.Map<SecretIdentity>(viewModel);
+                _secretIdentityRepository.Update(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+            }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _secretIdentityRepository.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+            }
         }
+
+        #region Especific Methods
+
+        public HeroViewModel GetHero(SecretIdentityViewModel viewModel)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
+        #endregion
     }
 }

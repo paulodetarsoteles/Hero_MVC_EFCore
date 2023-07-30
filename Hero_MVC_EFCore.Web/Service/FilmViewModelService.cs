@@ -3,6 +3,7 @@ using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
 using Hero_MVC_EFCore.Domain.Models;
 using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
+using System.Reflection;
 
 namespace Hero_MVC_EFCore.Web.Service
 {
@@ -22,12 +23,15 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var result = _filmRepository.GetAll();
+
+                if (result is null)
+                    throw new Exception("Lista de filmes retornou nula.");
+
                 return _mapper.Map<List<FilmViewModel>>(result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao buscar filmes - {ex.Message}");
-                throw new Exception($"Erro ao buscar filmes - {ex.Message}");
+                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - {ex.Message}");
             }
         }
 
@@ -36,23 +40,16 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var result = _filmRepository.GetById(id);
+
+                if (result is null)
+                    throw new Exception("Não foi encontrado filme com este Id.");
+
                 return _mapper.Map<FilmViewModel>(result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao buscar filme - {ex.Message}");
-                throw new Exception($"Erro ao buscar filme - {ex.Message}");
+                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
             }
-        }
-
-        public List<HeroViewModel> GetHeroes(FilmViewModel viewModel)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool IsPresent(FilmViewModel filmViewModel, HeroViewModel heroViewModel)
-        {
-            throw new NotImplementedException();
         }
 
         public void Insert(FilmViewModel viewModel)
@@ -64,8 +61,7 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao inserir filme - {ex.Message}");
-                throw new Exception($"Erro ao inserir filme - {ex.Message}");
+                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
             }
         }
 
@@ -78,8 +74,7 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao inserir filme - {ex.Message}");
-                throw new Exception($"Erro ao inserir filme - {ex.Message}");
+                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
             }
         }
 
@@ -91,9 +86,36 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao inserir filme - {ex.Message}");
-                throw new Exception($"Erro ao inserir filme - {ex.Message}");
+                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
             }
         }
+
+        #region Especific Methods
+
+        public List<HeroViewModel> GetHeroes(FilmViewModel viewModel)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
+        public bool IsPresent(FilmViewModel filmViewModel, HeroViewModel heroViewModel)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
+        #endregion
     }
 }

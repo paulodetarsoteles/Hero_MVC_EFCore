@@ -20,7 +20,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Console.WriteLine("Erro ao buscar lista de entidade");
+                throw new Exception($"Erro ao buscar lista de entidades - {ex.Message}");
             }
         }
 
@@ -38,7 +39,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Console.WriteLine($"Erro ao buscar entidade {id}");
+                throw new Exception($"Erro ao buscar entidade ID:{id} - {ex.Message}");
             }
         }
 
@@ -51,7 +53,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Console.WriteLine("Erro ao inserir entidade");
+                throw new Exception($"Erro ao inserir entidade - {ex.Message}");
             }
         }
 
@@ -64,7 +67,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Console.WriteLine("Erro ao atualizar entidade");
+                throw new Exception($"Erro ao atualizar entidade - {ex.Message}");
             }
         }
 
@@ -83,7 +87,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Console.WriteLine("Erro ao excluir entidade");
+                throw new Exception($"Erro ao excluir entidade - {ex.Message}");
             }
         }
     }

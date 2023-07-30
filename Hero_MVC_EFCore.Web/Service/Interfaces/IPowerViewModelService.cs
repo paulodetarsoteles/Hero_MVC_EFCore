@@ -6,9 +6,10 @@ namespace Hero_MVC_EFCore.Web.Service.Interfaces
     {
         List<PowerViewModel> GetAll();
         PowerViewModel GetById(int id);
-        HeroViewModel GetHero();
         void Insert(PowerViewModel viewModel);
         void Update(PowerViewModel viewModel);
         void Delete(int id);
+
+        HeroViewModel GetHero(PowerViewModel viewModel);
     }
 }
