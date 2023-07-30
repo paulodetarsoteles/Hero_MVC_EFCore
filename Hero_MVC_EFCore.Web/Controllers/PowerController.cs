@@ -1,31 +1,61 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Hero_MVC_EFCore.Web.Service.Interfaces;
+using Hero_MVC_EFCore.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hero_MVC_EFCore.Web.Controllers
 {
     public class PowerController : Controller
     {
+        private readonly IPowerViewModelService _powerViewModelService;
+
+        public PowerController(IPowerViewModelService powerViewModelService)
+        {
+            _powerViewModelService = powerViewModelService;
+        }
+
         // GET: PowerController
         public ActionResult Index()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         // GET: PowerController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         // GET: PowerController/Create
         public ActionResult Create()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         // POST: PowerController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(PowerViewModel viewModel)
         {
             try
             {
@@ -40,13 +70,20 @@ namespace Hero_MVC_EFCore.Web.Controllers
         // GET: PowerController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         // POST: PowerController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, PowerViewModel viewModel)
         {
             try
             {
@@ -61,7 +98,14 @@ namespace Hero_MVC_EFCore.Web.Controllers
         // GET: PowerController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Home");
+            }
         }
 
         // POST: PowerController/Delete/5
