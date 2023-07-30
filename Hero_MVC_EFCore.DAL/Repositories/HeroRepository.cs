@@ -12,22 +12,22 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 
         }
 
-        public List<Power> GetPowers()
+        public List<Power> GetPowers(Hero entity)
         {
             throw new NotImplementedException();
         }
 
-        public SecretIdentity GetSecretIdentity()
+        public SecretIdentity GetSecretIdentity(Hero entity)
         {
             throw new NotImplementedException();
         }
 
-        public bool HasPower()
+        public bool HasPower(Hero entity)
         {
             throw new NotImplementedException();
         }
 
-        public int CountFilms()
+        public int CountFilms(Hero entity)
         {
             throw new NotImplementedException();
         }

@@ -12,7 +12,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 
         }
 
-        public Hero GetHero()
+        public Hero GetHero(Power entity)
         {
             throw new NotImplementedException();
         }

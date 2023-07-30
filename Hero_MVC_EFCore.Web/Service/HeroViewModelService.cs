@@ -92,7 +92,7 @@ namespace Hero_MVC_EFCore.Web.Service
 
         #region Especific Methods
 
-        public List<PowerViewModel> GetPowers()
+        public List<PowerViewModel> GetPowers(HeroViewModel viewModel)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace Hero_MVC_EFCore.Web.Service
             }
         }
 
-        public SecretIdentityViewModel GetSecretIdentity()
+        public SecretIdentityViewModel GetSecretIdentity(HeroViewModel viewModel)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace Hero_MVC_EFCore.Web.Service
             }
         }
 
-        public bool HasPower()
+        public bool HasPower(HeroViewModel viewModel)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace Hero_MVC_EFCore.Web.Service
             }
         }
 
-        public int CountFilms()
+        public int CountFilms(HeroViewModel viewModel)
         {
             try
             {

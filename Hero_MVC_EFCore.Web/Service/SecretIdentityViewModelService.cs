@@ -92,7 +92,7 @@ namespace Hero_MVC_EFCore.Web.Service
 
         #region Especific Methods
 
-        public HeroViewModel GetHero()
+        public HeroViewModel GetHero(SecretIdentityViewModel viewModel)
         {
             try
             {

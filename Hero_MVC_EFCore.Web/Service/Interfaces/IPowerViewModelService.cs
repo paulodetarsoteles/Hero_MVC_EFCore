@@ -10,6 +10,6 @@ namespace Hero_MVC_EFCore.Web.Service.Interfaces
         void Update(PowerViewModel viewModel);
         void Delete(int id);
 
-        HeroViewModel GetHero();
+        HeroViewModel GetHero(PowerViewModel viewModel);
     }
 }
