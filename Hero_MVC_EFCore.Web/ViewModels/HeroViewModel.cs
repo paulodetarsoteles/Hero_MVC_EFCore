@@ -28,7 +28,7 @@ namespace Hero_MVC_EFCore.Web.ViewModels
         public List<Power> Powers { get; set; }
 
         [Display(Name = "Identidade secreta")]
-        public int SecretIdentityId { get; set; }
+        public int? SecretIdentityId { get; set; } = null;
 
         [NotMapped]
         [Display(Name = "Identidades secretas")]

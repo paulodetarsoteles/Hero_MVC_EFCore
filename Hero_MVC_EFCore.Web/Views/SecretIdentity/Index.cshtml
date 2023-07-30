@@ -1,0 +1,56 @@
+﻿@model IEnumerable<SecretIdentityViewModel>
+
+@{
+    ViewData["Title"] = "Identidades Secretas";
+}
+
+<h1>Identidades Secretas</h1>
+<p>
+    <a asp-action="Create">Nova Identidade Secreta</a>
+</p>
+@if (Model.Count() < 1)
+{
+    <p>
+        Nenhuma identidade secreta cadastrada...
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SecretIdentityId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdateDate)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SecretIdentityId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdateDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.SecretIdentityId  }) |
+                        @Html.ActionLink("Detalhes", "Details", new { id = item.SecretIdentityId }) |
+                        @Html.ActionLink("Excluir", "Delete", new { id = item.SecretIdentityId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

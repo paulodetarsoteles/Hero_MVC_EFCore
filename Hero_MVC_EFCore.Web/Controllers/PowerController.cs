@@ -59,9 +59,6 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return View(viewModel);
-
                 _powerViewModelService.Insert(viewModel);
 
                 return RedirectToAction(nameof(Index));
