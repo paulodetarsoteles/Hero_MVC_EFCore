@@ -40,19 +40,35 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao buscar filme - {ex.Message}");
-                throw new Exception($"Erro ao buscar filme - {ex.Message}");
+                Console.WriteLine($"Erro ao buscar filme - Id: {id} - {ex.Message}");
+                throw new Exception($"Erro ao buscar filme - Id: {id} - {ex.Message}");
             }
         }
 
         public List<HeroViewModel> GetHeroes(FilmViewModel viewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
 
         public bool IsPresent(FilmViewModel filmViewModel, HeroViewModel heroViewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
 
         public void Insert(FilmViewModel viewModel)
@@ -64,8 +80,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao inserir filme - {ex.Message}");
-                throw new Exception($"Erro ao inserir filme - {ex.Message}");
+                Console.WriteLine($"Erro ao inserir filme - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Erro ao inserir filme - {viewModel.Name} - {ex.Message}");
             }
         }
 
@@ -78,8 +94,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao inserir filme - {ex.Message}");
-                throw new Exception($"Erro ao inserir filme - {ex.Message}");
+                Console.WriteLine($"Erro ao atualizar filme - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Erro ao atualizarr filme - {viewModel.Name} - {ex.Message}");
             }
         }
 
@@ -91,8 +107,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao inserir filme - {ex.Message}");
-                throw new Exception($"Erro ao inserir filme - {ex.Message}");
+                Console.WriteLine($"Erro ao excluir filme - Id: {id} - {ex.Message}");
+                throw new Exception($"Erro ao excluir filme - Id: {ex.Message}");
             }
         }
     }

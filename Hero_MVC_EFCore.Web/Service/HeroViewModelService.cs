@@ -1,4 +1,5 @@
-﻿using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
+﻿using AutoMapper;
+using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
 using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
 
@@ -7,55 +8,129 @@ namespace Hero_MVC_EFCore.Web.Service
     public class HeroViewModelService : IHeroViewModelService
     {
         private readonly IHeroRepository _heroRepository;
+        private readonly IMapper _mapper;
 
-        public HeroViewModelService(IHeroRepository heroRepository)
+        public HeroViewModelService(IHeroRepository heroRepository, IMapper mapper)
         {
             _heroRepository = heroRepository;
+            _mapper = mapper;
         }
 
         public List<HeroViewModel> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
 
         public HeroViewModel GetById(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
 
         public List<PowerViewModel> GetPowers()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
 
         public SecretIdentityViewModel GetSecretIdentity()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
 
         public bool HasPower()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
 
         public int CountFilms()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
 
         public void Insert(HeroViewModel viewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
 
         public void Update(HeroViewModel viewModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao XXX - {ex.Message}");
+                throw new Exception($"Erro ao XXX - {ex.Message}");
+            }
         }
     }
 }
