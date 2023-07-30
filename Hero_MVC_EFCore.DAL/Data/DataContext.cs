@@ -7,7 +7,7 @@ namespace Hero_MVC_EFCore.DAL.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            
+
         }
 
         public DbSet<SecretIdentity> SecretIdentities { get; set; }

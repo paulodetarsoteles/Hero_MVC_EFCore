@@ -4,7 +4,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Interfaces
 {
     public interface IPowerRepository
     {
-        IEnumerable<Power> GetAll();
+        List<Power> GetAll();
         Power? GetById(int id);
         void Insert(Power entity);
         void Update(Power entity);

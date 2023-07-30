@@ -12,43 +12,79 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             _dbContext = dbContext;
         }
 
-        public IEnumerable<T> GetAll()
+        public List<T> GetAll()
         {
-            return _dbContext.Set<T>().ToList();
+            try
+            {
+                return _dbContext.Set<T>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public T? GetById(int id)
         {
-            var keyValue = new object[] { id };
-            var entity = _dbContext.Set<T>().Find(keyValue);
+            try
+            {
+                var keyValue = new object[] { id };
+                var entity = _dbContext.Set<T>().Find(keyValue);
 
-            if (entity is null)
-                return null;
+                if (entity is null)
+                    return null;
 
-            return entity;
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void Insert(T entity)
         {
-            _dbContext.Set<T>().AddAsync(entity);
-            _dbContext.SaveChanges();
+            try
+            {
+                _dbContext.Set<T>().AddAsync(entity);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void Update(T entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
-            _dbContext.SaveChanges();
+            try
+            {
+                _dbContext.Entry(entity).State = EntityState.Modified;
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public void Delete(int id)
         {
-            var entity = GetById(id);
+            try
+            {
+                var keyValue = new object[] { id };
+                var entity = _dbContext.Set<T>().Find(keyValue);
 
-            if (entity is null)
-                return;
+                if (entity is null)
+                    return;
 
-            _dbContext.Set<T>().Remove(entity);
-            _dbContext.SaveChanges();
+                _dbContext.Set<T>().Remove(entity);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

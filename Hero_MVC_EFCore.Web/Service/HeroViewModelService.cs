@@ -52,7 +52,7 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             throw new NotImplementedException();
         }
-        
+
         public void Delete(int id)
         {
             throw new NotImplementedException();

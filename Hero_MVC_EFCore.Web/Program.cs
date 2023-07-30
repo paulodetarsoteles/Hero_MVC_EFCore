@@ -28,6 +28,8 @@ internal class Program
         builder.Services.AddTransient<IPowerViewModelService, PowerViewModelService>();
         builder.Services.AddTransient<ISecretIdentityViewModelService, SecretIdentityViewModelService>();
 
+        builder.Services.AddAutoMapper(typeof(Program));
+
         builder.Services.AddControllersWithViews();
 
         var app = builder.Build();
@@ -37,6 +39,7 @@ internal class Program
         {
             app.UseExceptionHandler("/Home/Error");
         }
+
         app.UseStaticFiles();
 
         app.UseRouting();

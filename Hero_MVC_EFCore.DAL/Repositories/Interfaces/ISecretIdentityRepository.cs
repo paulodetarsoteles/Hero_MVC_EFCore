@@ -4,7 +4,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Interfaces
 {
     public interface ISecretIdentityRepository
     {
-        IEnumerable<SecretIdentity> GetAll();
+        List<SecretIdentity> GetAll();
         SecretIdentity? GetById(int id);
         void Insert(SecretIdentity entity);
         void Update(SecretIdentity entity);

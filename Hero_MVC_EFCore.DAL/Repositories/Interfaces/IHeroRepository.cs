@@ -4,7 +4,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Interfaces
 {
     public interface IHeroRepository
     {
-        IEnumerable<Hero> GetAll();
+        List<Hero> GetAll();
         Hero? GetById(int id);
         void Insert(Hero entity);
         void Update(Hero entity);
