@@ -7,7 +7,7 @@ namespace Hero_MVC_EFCore.Web.ViewModels
     public class SecretIdentityViewModel
     {
         [Key]
-        [Display(Name = "Código da Id. Secreta")]
+        [Display(Name = "Código")]
         public int SecretIdentityId { get; set; }
 
         [Required]
@@ -21,7 +21,7 @@ namespace Hero_MVC_EFCore.Web.ViewModels
         public DateTime UpdateDate { get; set; } = DateTime.Now;
 
         [NotMapped]
-        [Display(Name = "Heróis")]
+        [Display(Name = "Herói")]
         public Hero Hero { get; set; }
     }
 }

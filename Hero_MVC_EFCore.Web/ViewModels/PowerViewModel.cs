@@ -8,7 +8,7 @@ namespace Hero_MVC_EFCore.Web.ViewModels
     public class PowerViewModel
     {
         [Key]
-        [Display(Name = "Código do poder")]
+        [Display(Name = "Código")]
         public int PowerId { get; set; }
 
         [Required]
@@ -17,13 +17,13 @@ namespace Hero_MVC_EFCore.Web.ViewModels
 
         [Required]
         [Display(Name = "Tipo")]
-        public EnumPower? Type { get; set; } = null;
+        public EnumPower Type { get; set; } = EnumPower.Power;
 
         [Display(Name = "Código do herói")]
         public int? HeroId { get; set; } = null;
 
         [NotMapped]
-        [Display(Name = "Heróis")]
+        [Display(Name = "Herói")]
         public Hero Hero { get; set; }
     }
 }
