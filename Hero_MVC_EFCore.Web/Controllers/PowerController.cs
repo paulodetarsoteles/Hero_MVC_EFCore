@@ -59,13 +59,16 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
+                if (!ModelState.IsValid)
+                    return View(viewModel);
+
                 _powerViewModelService.Insert(viewModel);
 
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
-                return View();
+                return View(viewModel);
             }
         }
 
@@ -98,7 +101,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
             }
             catch
             {
-                return View();
+                return View(viewModel);
             }
         }
 
@@ -131,7 +134,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
             }
             catch
             {
-                return View();
+                return View(viewModel);
             }
         }
     }

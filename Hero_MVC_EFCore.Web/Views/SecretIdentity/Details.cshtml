@@ -29,6 +29,17 @@
             @Html.DisplayFor(model => model.Comments)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Hero)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Hero is null)
+            {
+                <span>Sem vínculo</span>
+            }
+            else
+                @Html.DisplayFor(model => model.Hero.Name)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.UpdateDate)
         </dt>
         <dd class="col-sm-10">

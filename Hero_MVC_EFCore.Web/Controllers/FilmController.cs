@@ -68,7 +68,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
             }
             catch
             {
-                return View();
+                return View(viewModel);
             }
         }
 
@@ -101,7 +101,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
             }
             catch
             {
-                return RedirectToAction("Error", "Home");
+                return View(viewModel);
             }
         }
 
@@ -136,7 +136,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
             }
             catch
             {
-                return View();
+                return View(viewModel);
             }
         }
     }
