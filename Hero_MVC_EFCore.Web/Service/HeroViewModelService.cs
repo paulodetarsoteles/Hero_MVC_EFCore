@@ -96,7 +96,8 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var entity = _heroRepository.GetAllPowers();
+                return _mapper.Map<List<PowerViewModel>>(entity);
             }
             catch (Exception ex)
             {
@@ -108,7 +109,10 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var entity = _mapper.Map<Hero>(viewModel);
+                var resultModel = _heroRepository.GetPowers(entity);
+
+                return _mapper.Map<List<PowerViewModel>>(resultModel);
             }
             catch (Exception ex)
             {
