@@ -92,7 +92,31 @@ namespace Hero_MVC_EFCore.Web.Service
 
         #region Especific Methods
 
+        public List<PowerViewModel> GetAllPowers()
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
         public List<PowerViewModel> GetPowers(HeroViewModel viewModel)
+        {
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
+        public List<SecretIdentityViewModel> GetAllSecretIdentities()
         {
             try
             {

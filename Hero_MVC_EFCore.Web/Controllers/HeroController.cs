@@ -44,6 +44,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
+                _heroViewModelService.GetSecretIdentity
                 return View();
             }
             catch
