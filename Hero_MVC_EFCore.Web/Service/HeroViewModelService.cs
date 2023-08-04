@@ -92,7 +92,35 @@ namespace Hero_MVC_EFCore.Web.Service
 
         #region Especific Methods
 
+        public List<PowerViewModel> GetAllPowers()
+        {
+            try
+            {
+                var entity = _heroRepository.GetAllPowers();
+                return _mapper.Map<List<PowerViewModel>>(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
         public List<PowerViewModel> GetPowers(HeroViewModel viewModel)
+        {
+            try
+            {
+                var entity = _mapper.Map<Hero>(viewModel);
+                var resultModel = _heroRepository.GetPowers(entity);
+
+                return _mapper.Map<List<PowerViewModel>>(resultModel);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
+        public List<SecretIdentityViewModel> GetAllSecretIdentities()
         {
             try
             {
