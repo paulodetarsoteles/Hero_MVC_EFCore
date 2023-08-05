@@ -44,7 +44,8 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                _heroViewModelService.GetSecretIdentity
+                ViewBag.GetAllPowers = _heroViewModelService.GetAllPowers();
+                ViewBag.GetAllSecretIdentities = _heroViewModelService.GetAllSecretIdentities();
                 return View();
             }
             catch
