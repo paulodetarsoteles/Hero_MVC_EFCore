@@ -12,7 +12,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             _dbContext = dbContext;
         }
 
-        public List<T> GetAll()
+        public virtual List<T> GetAll()
         {
             try
             {
@@ -25,7 +25,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             }
         }
 
-        public T? GetById(int id)
+        public virtual T? GetById(int id)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             }
         }
 
-        public void Insert(T entity)
+        public virtual void Insert(T entity)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             }
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             }
         }
 
-        public void Delete(int id)
+        public virtual void Delete(int id)
         {
             try
             {
