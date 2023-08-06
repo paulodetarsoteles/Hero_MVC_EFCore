@@ -1,4 +1,5 @@
-﻿using Hero_MVC_EFCore.Web.Service.Interfaces;
+﻿using Hero_MVC_EFCore.Domain.Models;
+using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -65,7 +66,39 @@ namespace Hero_MVC_EFCore.Web.Controllers
                 if (!ModelState.IsValid)
                     return View(viewModel);
 
-                _heroViewModelService.Insert(viewModel);
+                ViewBag.GetAllPowers = new SelectList(_heroViewModelService.GetAllPowers(), "PowerId", "Name");
+                ViewBag.GetAllSecretIdentities = new SelectList(_heroViewModelService.GetAllSecretIdentities(), "SecretIdentityId", "Name");
+
+                viewModel.HeroId = _heroViewModelService.InsertHero(viewModel);
+
+                //if (_remessaRepository.ValidateReferencia(remessa.Referencia))
+                //    throw new Exception("Já existe uma referência com este nome.");
+
+                string powersIdList = Request.Form["chkPower"].ToString();
+
+                if (!string.IsNullOrEmpty(powersIdList))
+                {
+                    int[] splitPowers = powersIdList.Split(',').Select(int.Parse).ToArray();
+
+                    if (splitPowers.Length > 0)
+                    {
+                        viewModel.Powers = new List<PowerViewModel>();
+
+                        List<PowerViewModel> powers = _heroViewModelService.GetAllPowers();
+                        
+                        foreach (int powerId in splitPowers)
+                        {
+                            PowerViewModel power = powers.First(p => p.PowerId == powerId);
+                            
+                            if (power is not null)
+                            {
+                                power.HeroId = viewModel.HeroId;
+                                viewModel.Powers.Add(powers.First(p => p.PowerId == powerId));
+                            }
+                        }
+                        _heroViewModelService.UpdatePowers(viewModel.Powers);
+                    }
+                }
 
                 return RedirectToAction(nameof(Index));
             }
@@ -128,9 +161,6 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return View(viewModel);
-
                 _heroViewModelService.Delete(id);
 
                 return RedirectToAction(nameof(Index));

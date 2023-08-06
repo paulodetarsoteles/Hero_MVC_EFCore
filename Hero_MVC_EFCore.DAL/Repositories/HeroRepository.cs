@@ -34,7 +34,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             try
             {
                 List<Power> result = new();
-                result = _dbContext.Powers.ToList();
+                result = _dbContext.Powers.AsNoTracking().ToList();
 
                 return result;
             }
@@ -116,6 +116,51 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             {
                 Console.WriteLine("Erro ao contar filmes do herói");
                 throw new Exception($"Erro ao contar filmes do herói - {ex.Message}");
+            }
+        }
+
+        public int InsertHero(Hero entity)
+        {
+            try
+            {
+                _dbContext.AddAsync(entity);
+                _dbContext.SaveChanges();
+
+                return _dbContext.Heroes.OrderByDescending(h => h.HeroId).First().HeroId;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao inserir entidade");
+                throw new Exception($"Erro ao inserir entidade - {ex.Message}");
+            }
+        }
+
+        public override void Delete(int id)
+        {
+            var powers = _dbContext.Powers.Where(p => p.HeroId == id).AsNoTracking().ToList(); 
+            
+            foreach (var power in powers)
+                power.HeroId = null;
+
+            _dbContext.UpdateRange(powers);
+            _dbContext.SaveChanges();
+
+            base.Delete(id);
+        }
+
+        public void UpdatePowers(List<Power> entity)
+        {
+            try
+            {
+                foreach (Power power in entity)
+                    _dbContext.Powers.Update(power);
+
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao atualizar poder");
+                throw new Exception($"Erro ao atualizar poder - {ex.Message}");
             }
         }
     }
