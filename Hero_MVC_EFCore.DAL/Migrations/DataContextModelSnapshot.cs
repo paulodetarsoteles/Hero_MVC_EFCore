@@ -34,7 +34,7 @@ namespace Hero_MVC_EFCore.DAL.Migrations
 
                     b.HasIndex("HeroesHeroId");
 
-                    b.ToTable("FilmHero");
+                    b.ToTable("FilmHero", (string)null);
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Film", b =>
@@ -53,7 +53,7 @@ namespace Hero_MVC_EFCore.DAL.Migrations
 
                     b.HasKey("FilmId");
 
-                    b.ToTable("Films");
+                    b.ToTable("Films", (string)null);
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Hero", b =>
@@ -84,7 +84,7 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                     b.HasIndex("SecretIdentityId")
                         .IsUnique();
 
-                    b.ToTable("Heroes");
+                    b.ToTable("Heroes", (string)null);
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Power", b =>
@@ -108,7 +108,7 @@ namespace Hero_MVC_EFCore.DAL.Migrations
 
                     b.HasIndex("HeroId");
 
-                    b.ToTable("Powers");
+                    b.ToTable("Powers", (string)null);
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.SecretIdentity", b =>
@@ -130,7 +130,7 @@ namespace Hero_MVC_EFCore.DAL.Migrations
 
                     b.HasKey("SecretIdentityId");
 
-                    b.ToTable("SecretIdentities");
+                    b.ToTable("SecretIdentities", (string)null);
                 });
 
             modelBuilder.Entity("FilmHero", b =>

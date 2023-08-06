@@ -92,7 +92,7 @@ namespace Hero_MVC_EFCore.Web.Service
 
         #region Especific Methods
 
-        public List<PowerViewModel> GetAllPowers()
+                public List<PowerViewModel> GetAllPowers()
         {
             try
             {
@@ -110,9 +110,9 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var entity = _mapper.Map<Hero>(viewModel);
-                var resultModel = _heroRepository.GetPowers(entity);
+                var result = _heroRepository.GetPowers(entity);
 
-                return _mapper.Map<List<PowerViewModel>>(resultModel);
+                return _mapper.Map<List<PowerViewModel>>(result);
             }
             catch (Exception ex)
             {
@@ -124,7 +124,9 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var result = _heroRepository.GetAllSecretIdentities();
+
+                return _mapper.Map<List<SecretIdentityViewModel>>(result);
             }
             catch (Exception ex)
             {
@@ -136,7 +138,10 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var entity = _mapper.Map<Hero>(viewModel);
+                var result = _heroRepository.GetSecretIdentity(entity);
+
+                return _mapper.Map<SecretIdentityViewModel>(result);
             }
             catch (Exception ex)
             {
@@ -148,7 +153,9 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var entity = _mapper.Map<Hero>(viewModel);
+
+                return _heroRepository.HasPower(entity);
             }
             catch (Exception ex)
             {
@@ -160,7 +167,9 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
-                throw new NotImplementedException();
+                var entity = _mapper.Map<Hero>(viewModel);
+
+                return _heroRepository.CountFilms(entity);
             }
             catch (Exception ex)
             {

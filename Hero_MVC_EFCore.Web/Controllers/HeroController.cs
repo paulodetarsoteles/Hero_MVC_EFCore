@@ -1,6 +1,7 @@
 ﻿using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Hero_MVC_EFCore.Web.Controllers
 {
@@ -44,7 +45,8 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                _heroViewModelService.GetSecretIdentity
+                ViewBag.GetAllPowers = new SelectList(_heroViewModelService.GetAllPowers(), "PowerId", "Name");
+                ViewBag.GetAllSecretIdentities = new SelectList(_heroViewModelService.GetAllSecretIdentities(), "SecretIdentityId", "Name");
                 return View();
             }
             catch

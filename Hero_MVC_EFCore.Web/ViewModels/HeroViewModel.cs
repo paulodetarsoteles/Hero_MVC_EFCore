@@ -1,6 +1,7 @@
 ﻿using Hero_MVC_EFCore.Domain.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Hero_MVC_EFCore.Web.ViewModels
 {
@@ -23,18 +24,20 @@ namespace Hero_MVC_EFCore.Web.ViewModels
         [Display(Name = "Última atualização")]
         public DateTime UpdateDate { get; set; } = DateTime.Now;
 
-        [NotMapped]
+        //[NotMapped]
+        [JsonIgnore]
         [Display(Name = "Poderes ou armas")]
         public List<Power> Powers { get; set; }
 
         [Display(Name = "Identidade secreta")]
         public int? SecretIdentityId { get; set; } = null;
 
-        [NotMapped]
+        //[NotMapped]
+        [JsonIgnore]
         [Display(Name = "Identidades secretas")]
         public SecretIdentity SecretIdentity { get; set; }
 
-        [NotMapped]
+        //[NotMapped]
         [Display(Name = "Filmes")]
         public List<Film> Films { get; set; }
     }

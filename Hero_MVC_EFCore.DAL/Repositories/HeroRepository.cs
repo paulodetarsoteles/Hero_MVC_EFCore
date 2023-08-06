@@ -13,6 +13,22 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 
         }
 
+        public override List<Hero> GetAll()
+        {
+            try
+            {
+                return _dbContext.Heroes
+                    .Include(h => h.SecretIdentity)
+                    .Include(h => h.Powers)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao buscar lista de poderes/armas");
+                throw new Exception($"Erro ao buscar lista de poderes/armas - {ex.Message}");
+            }
+        }
+
         public List<Power> GetAllPowers()
         {
             try

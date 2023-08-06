@@ -17,10 +17,14 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+            <div class="form-group form-check">
+                <label asp-for="Active" class="form-check-label"></label>
+                <input asp-for="Active" class="form-check-input" />
+            </div>
             <div class="form-group">
-                <label asp-for="Active" class="control-label"></label>
-                <input asp-for="Active" class="form-control" />
-                <span asp-validation-for="Active" class="text-danger"></span>
+                <label asp-for="SecretIdentityId" class="control-label"></label>
+                @Html.DropDownList("SecretIdentityId", ViewBag.GetAllSecretIdentities, "Selecione...", new { @class = "form-control" })
+                <span asp-validation-for="SecretIdentityId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Comments" class="control-label"></label>
