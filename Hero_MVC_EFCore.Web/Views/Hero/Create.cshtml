@@ -27,6 +27,20 @@
                 <span asp-validation-for="SecretIdentityId" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Powers" class="control-label"></label>
+                <div class="row">
+                    <div class="col-md-8">
+                        @Html.DropDownList("PowerId", (SelectList)ViewBag.GetAllPowers, "Selecione...", new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2">
+                        <div class="btn btn-secondary" id="btnAddPower">
+                            Adicionar
+                        </div>
+                    </div>
+                </div>
+                <ul id="listPowers"></ul>
+            </div>
+            <div class="form-group">
                 <label asp-for="Comments" class="control-label"></label>
                 <input asp-for="Comments" class="form-control" />
                 <span asp-validation-for="Comments" class="text-danger"></span>
@@ -46,4 +60,5 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script src="~/js/Hero/Create.js" asp-append-version="true"></script>
 }

@@ -1,4 +1,5 @@
-﻿using Hero_MVC_EFCore.Web.ViewModels;
+﻿using Hero_MVC_EFCore.Domain.Models;
+using Hero_MVC_EFCore.Web.ViewModels;
 
 namespace Hero_MVC_EFCore.Web.Service.Interfaces
 {
@@ -16,5 +17,7 @@ namespace Hero_MVC_EFCore.Web.Service.Interfaces
         SecretIdentityViewModel GetSecretIdentity(HeroViewModel viewModel);
         bool HasPower(HeroViewModel viewModel);
         int CountFilms(HeroViewModel viewModel);
+        public void UpdatePowers(List<PowerViewModel> viewModel);
+        public int InsertHero(HeroViewModel viewModel);
     }
 }

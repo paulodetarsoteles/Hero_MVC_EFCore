@@ -1,4 +1,6 @@
-﻿namespace Hero_MVC_EFCore.Domain.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Hero_MVC_EFCore.Domain.Models
 {
     public class Hero
     {

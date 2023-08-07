@@ -11,7 +11,7 @@ namespace Hero_MVC_EFCore.Web.Mapping
             CreateMap<Film, FilmViewModel>();
             CreateMap<FilmViewModel, Film>();
             CreateMap<Hero, HeroViewModel>();
-            CreateMap<HeroViewModel, Hero>();
+            CreateMap<HeroViewModel, Hero>().ForMember(x => x.Powers, opt => opt.Ignore());
             CreateMap<Power, PowerViewModel>();
             CreateMap<PowerViewModel, Power>();
             CreateMap<SecretIdentity, SecretIdentityViewModel>();

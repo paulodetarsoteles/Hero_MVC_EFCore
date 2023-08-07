@@ -24,21 +24,21 @@ namespace Hero_MVC_EFCore.Web.ViewModels
         [Display(Name = "Última atualização")]
         public DateTime UpdateDate { get; set; } = DateTime.Now;
 
-        //[NotMapped]
+        [NotMapped]
         [JsonIgnore]
         [Display(Name = "Poderes ou armas")]
-        public List<Power> Powers { get; set; }
+        public List<PowerViewModel> Powers { get; set; }
 
         [Display(Name = "Identidade secreta")]
         public int? SecretIdentityId { get; set; } = null;
 
-        //[NotMapped]
+        [NotMapped]
         [JsonIgnore]
         [Display(Name = "Identidades secretas")]
-        public SecretIdentity SecretIdentity { get; set; }
+        public SecretIdentityViewModel SecretIdentity { get; set; }
 
-        //[NotMapped]
+        [NotMapped]
         [Display(Name = "Filmes")]
-        public List<Film> Films { get; set; }
+        public List<FilmViewModel> Films { get; set; }
     }
 }

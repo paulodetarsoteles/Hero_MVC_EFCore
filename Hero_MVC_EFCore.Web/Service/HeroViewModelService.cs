@@ -177,6 +177,33 @@ namespace Hero_MVC_EFCore.Web.Service
             }
         }
 
+        public void UpdatePowers(List<PowerViewModel> viewModel)
+        {
+            try
+            {
+                var entityPowerList = _mapper.Map<List<Power>>(viewModel);
+                _heroRepository.UpdatePowers(entityPowerList);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+            }
+        }
+
+        public int InsertHero(HeroViewModel viewModel)
+        {
+            try
+            {
+                var entity = _mapper.Map<Hero>(viewModel);
+
+                return _heroRepository.InsertHero(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+            }
+        }
+
         #endregion
     }
 }
