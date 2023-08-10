@@ -105,12 +105,11 @@ namespace Hero_MVC_EFCore.Web.Service
             }
         }
 
-        public List<PowerViewModel> GetPowers(HeroViewModel viewModel)
+        public List<PowerViewModel> GetPowers(int id)
         {
             try
             {
-                var entity = _mapper.Map<Hero>(viewModel);
-                var result = _heroRepository.GetPowers(entity);
+                var result = _heroRepository.GetPowers(id);
 
                 return _mapper.Map<List<PowerViewModel>>(result);
             }

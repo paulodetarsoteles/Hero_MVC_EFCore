@@ -1,10 +1,10 @@
-﻿//Adição dos poderes/armas no heróis
+﻿//Edição dos poderes/armas no heróis
 $(document).ready(function () {
     $("#btnAddPower").click(function () {
         var chkRptPower = false;
         var currentValue = $("#PowerId option:selected").text().trim();
 
-        if (currentValue == "Selecione... ") {
+        if (currentValue == "Selecione...") {
             return false;
         }
 
@@ -17,18 +17,19 @@ $(document).ready(function () {
         });
 
         if (!chkRptPower) {
-            $("#listPowers").append("<li>" +
+            $("#listPowers").append(
+                "<li>" +
                 $("#PowerId option:selected").text() +
-                " <input type='hidden' name='chkPower' id='chkPower' class='chkPower' value='" +
-                $("#PowerId option:selected").val() +
-                "'></li>");
+                "<input type='hidden' name='chkPower' id='chkPower' class='chkPower' value='" + $("#PowerId option:selected").val() + "'>" +
+                "</li>");
         } else {
-            alert("Poder já adicionado!");
+            alert("Poder/Arma já adicionado!");
         }
     });
 
     $('#listPowers').on('click', "li", function () {
         $(this).remove();
+        console.log("oi")
         return false;
     });
 });

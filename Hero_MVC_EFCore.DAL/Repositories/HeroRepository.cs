@@ -45,12 +45,12 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
         }
 
-        public List<Power> GetPowers(Hero entity)
+        public List<Power> GetPowers(int id)
         {
             try
             {
                 List<Power> result = new();
-                result = _dbContext.Powers.Where(x => x.HeroId == entity.HeroId).ToList();
+                result = _dbContext.Powers.ToList().FindAll(x => x.HeroId == id);
 
                 return result;
             }

@@ -1,4 +1,4 @@
-﻿@model SecretIdentityViewModel
+﻿@model HeroViewModel
 
 @{
     ViewData["Title"] = "Editar";
@@ -13,14 +13,44 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="SecretIdentityId" class="control-label" hidden></label>
-                <input asp-for="SecretIdentityId" class="form-control" hidden />
-                <span asp-validation-for="SecretIdentityId" class="text-danger"></span>
+                <label asp-for="HeroId" class="control-label" hidden></label>
+                <input asp-for="HeroId" class="form-control" hidden />
+                <span asp-validation-for="HeroId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label asp-for="Active" class="form-check-label"></label>
+                <input asp-for="Active" class="form-check-input" />
+            </div>
+            <div class="form-group">
+                <label asp-for="SecretIdentityId" class="control-label"></label>
+                @Html.DropDownList("SecretIdentityId", ViewBag.GetAllSecretIdentities, "Selecione...", new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="Powers" class="control-label"></label>
+                <div class="row">
+                    <div class="col-md-8">
+                        @Html.DropDownList("PowerId", (SelectList)ViewBag.GetAllPowers, "Selecione...", new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2">
+                        <div class="btn btn-secondary" id="btnAddPower">
+                            Adicionar
+                        </div>
+                    </div>
+                </div>
+                <ul id="listPowers">
+                    @foreach (var item in Model.Powers)
+                    {
+                        <li>
+                            @Html.DisplayFor(itemModel => item.Name)
+                            <input type='hidden' name='chkPower' id='chkPower' class='chkPower' value=@item.PowerId />
+                        </li>
+                    }
+                </ul>
             </div>
             <div class="form-group">
                 <label asp-for="Comments" class="control-label"></label>
@@ -42,4 +72,5 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script src="~/js/Hero/Edit.js" asp-append-version="true"></script>
 }
