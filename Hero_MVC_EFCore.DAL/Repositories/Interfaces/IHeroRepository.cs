@@ -12,7 +12,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Interfaces
 
         List<Power> GetAllPowers();
         List<SecretIdentity> GetAllSecretIdentities();
-        List<Power> GetPowers(Hero entity);
+        List<Power> GetPowers(int id);
         SecretIdentity GetSecretIdentity(Hero entity);
         bool HasPower(Hero entity);
         int CountFilms(Hero entity);

@@ -85,11 +85,11 @@ namespace Hero_MVC_EFCore.Web.Controllers
                         viewModel.Powers = new List<PowerViewModel>();
 
                         List<PowerViewModel> powers = _heroViewModelService.GetAllPowers();
-                        
+
                         foreach (int powerId in splitPowers)
                         {
                             PowerViewModel power = powers.First(p => p.PowerId == powerId);
-                            
+
                             if (power is not null)
                             {
                                 power.HeroId = viewModel.HeroId;
@@ -113,7 +113,15 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
-                return View(_heroViewModelService.GetById(id));
+                ViewBag.GetAllPowers = new SelectList(_heroViewModelService.GetAllPowers(), "PowerId", "Name");
+                ViewBag.GetAllSecretIdentities = new SelectList(_heroViewModelService.GetAllSecretIdentities(), "SecretIdentityId", "Name");
+
+                var heroViewModel = _heroViewModelService.GetById(id);
+                var powers = _heroViewModelService.GetPowers(id);
+
+                heroViewModel.Powers.AddRange(powers);
+
+                return View(heroViewModel);
             }
             catch
             {
@@ -131,7 +139,37 @@ namespace Hero_MVC_EFCore.Web.Controllers
                 if (!ModelState.IsValid)
                     return View(viewModel);
 
+                ViewBag.GetAllPowers = new SelectList(_heroViewModelService.GetAllPowers(), "PowerId", "Name");
+                ViewBag.GetAllSecretIdentities = new SelectList(_heroViewModelService.GetAllSecretIdentities(), "SecretIdentityId", "Name");
+
                 _heroViewModelService.Update(viewModel);
+
+                viewModel.Powers = new();
+
+                string powersIdList = Request.Form["chkPower"].ToString();
+
+                if (!string.IsNullOrEmpty(powersIdList))
+                {
+                    int[] splitPowers = powersIdList.Split(',').Select(int.Parse).ToArray();
+
+                    if (splitPowers.Length > 0)
+                    {
+                        List<PowerViewModel> powers = _heroViewModelService.GetAllPowers();
+
+                        foreach (int powerId in splitPowers)
+                        {
+                            PowerViewModel power = powers.First(p => p.PowerId == powerId);
+
+                            if (power is not null)
+                            {
+                                power.HeroId = viewModel.HeroId;
+                                viewModel.Powers.Add(powers.First(p => p.PowerId == powerId));
+                            }
+                        }
+                    }
+                }
+
+                _heroViewModelService.UpdatePowers(viewModel.Powers);
 
                 return RedirectToAction(nameof(Index));
             }
