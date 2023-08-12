@@ -57,6 +57,7 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var entity = _mapper.Map<Hero>(viewModel);
+
                 _heroRepository.Insert(entity);
             }
             catch (Exception ex)
@@ -70,6 +71,8 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var entity = _mapper.Map<Hero>(viewModel);
+
+                _heroRepository.CleanPowers(entity.HeroId);
                 _heroRepository.Update(entity);
             }
             catch (Exception ex)
@@ -82,6 +85,7 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
+                _heroRepository.CleanPowers(id);
                 _heroRepository.Delete(id);
             }
             catch (Exception ex)
@@ -97,6 +101,7 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var entity = _heroRepository.GetAllPowers();
+
                 return _mapper.Map<List<PowerViewModel>>(entity);
             }
             catch (Exception ex)

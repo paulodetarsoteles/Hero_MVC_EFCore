@@ -101,9 +101,10 @@ namespace Hero_MVC_EFCore.Web.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ModelState.AddModelError("", e.Message);
+                return View(viewModel);
             }
         }
 
@@ -141,28 +142,19 @@ namespace Hero_MVC_EFCore.Web.Controllers
                 ViewBag.GetAllPowers = new SelectList(_heroViewModelService.GetAllPowers(), "PowerId", "Name");
                 ViewBag.GetAllSecretIdentities = new SelectList(_heroViewModelService.GetAllSecretIdentities(), "SecretIdentityId", "Name");
 
+                viewModel.UpdateDate = DateTime.Now;
                 _heroViewModelService.Update(viewModel);
-
-                viewModel.Powers = _heroViewModelService.GetPowers(viewModel.HeroId);
-
-                if (viewModel.Powers.Count > 0)
-                {
-                    List<PowerViewModel> powersDelete = new();
-                    viewModel.Powers = powersDelete;
-                    _heroViewModelService.UpdatePowers(powersDelete);
-                }
 
                 string powersIdList = Request.Form["chkPower"].ToString();
 
-                if (string.IsNullOrEmpty(powersIdList))
-                    _heroViewModelService.UpdatePowers(viewModel.Powers);
-                else
+                if (!string.IsNullOrEmpty(powersIdList))
                 {
                     int[] splitPowers = powersIdList.Split(',').Select(int.Parse).ToArray();
 
                     if (splitPowers.Length > 0)
                     {
                         List<PowerViewModel> powers = _heroViewModelService.GetAllPowers();
+                        viewModel.Powers = new();
 
                         foreach (int powerId in splitPowers)
                         {
@@ -174,16 +166,16 @@ namespace Hero_MVC_EFCore.Web.Controllers
                                 viewModel.Powers.Add(powers.First(p => p.PowerId == powerId));
                             }
                         }
+                        _heroViewModelService.UpdatePowers(viewModel.Powers);
                     }
-                    
-                    _heroViewModelService.UpdatePowers(viewModel.Powers);
                 }
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ModelState.AddModelError("", e.Message);
+                return View(viewModel);
             }
         }
 
@@ -211,9 +203,10 @@ namespace Hero_MVC_EFCore.Web.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                ModelState.AddModelError("", e.Message);
+                return View(_heroViewModelService.GetById(id));
             }
         }
     }

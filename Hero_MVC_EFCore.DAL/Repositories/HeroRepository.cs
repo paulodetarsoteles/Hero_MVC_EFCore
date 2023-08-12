@@ -17,10 +17,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                return _dbContext.Heroes
-                    .Include(h => h.SecretIdentity)
-                    .Include(h => h.Powers)
-                    .ToList();
+                return _dbContext.Heroes.Include(h => h.SecretIdentity).Include(h => h.Powers).ToList();
             }
             catch (Exception ex)
             {
@@ -34,7 +31,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             try
             {
                 List<Power> result = new();
-                result = _dbContext.Powers.ToList();
+                result = _dbContext.Powers.AsNoTracking().ToList();
 
                 return result;
             }
@@ -135,25 +132,28 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
         }
 
-        public override void Delete(int id)
+        public void CleanPowers(int heroId)
         {
-            var powers = _dbContext.Powers.Where(p => p.HeroId == id).AsNoTracking().ToList(); 
-            
-            foreach (var power in powers)
-                power.HeroId = null;
+            try
+            {
+                List<Power> powers = _dbContext.Powers.Where(p => p.HeroId ==  heroId).AsNoTracking().ToList();
+                powers.ForEach(power => power.HeroId = null);
 
-            _dbContext.UpdateRange(powers);
-            _dbContext.SaveChanges();
-
-            base.Delete(id);
+                _dbContext.UpdateRange(powers);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao limpar poderes");
+                throw new Exception($"Erro ao limpar poderes - {ex.Message}");
+            }
         }
 
         public void UpdatePowers(List<Power> entity)
         {
             try
             {
-                _dbContext.Powers.UpdateRange(entity);
-
+                _dbContext.UpdateRange(entity);
                 _dbContext.SaveChanges();
             }
             catch (Exception ex)
