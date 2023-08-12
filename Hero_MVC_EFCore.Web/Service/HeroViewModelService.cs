@@ -110,20 +110,6 @@ namespace Hero_MVC_EFCore.Web.Service
             }
         }
 
-        public List<PowerViewModel> GetPowers(int id)
-        {
-            try
-            {
-                var result = _heroRepository.GetPowers(id);
-
-                return _mapper.Map<List<PowerViewModel>>(result);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
-            }
-        }
-
         public List<SecretIdentityViewModel> GetAllSecretIdentities()
         {
             try

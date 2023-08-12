@@ -48,22 +48,6 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
         }
 
-        public List<Power> GetPowers(int id)
-        {
-            try
-            {
-                List<Power> result = new();
-                result = _dbContext.Powers.ToList().FindAll(x => x.HeroId == id);
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro ao buscar lista de poderes/armas");
-                throw new Exception($"Erro ao buscar lista de poderes/armas - {ex.Message}");
-            }
-        }
-
         public List<SecretIdentity> GetAllSecretIdentities()
         {
             try
