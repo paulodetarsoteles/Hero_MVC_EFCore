@@ -1,5 +1,4 @@
-﻿using Hero_MVC_EFCore.Domain.Models;
-using Hero_MVC_EFCore.Web.Service.Interfaces;
+﻿using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -144,11 +143,20 @@ namespace Hero_MVC_EFCore.Web.Controllers
 
                 _heroViewModelService.Update(viewModel);
 
-                viewModel.Powers = new();
+                viewModel.Powers = _heroViewModelService.GetPowers(viewModel.HeroId);
+
+                if (viewModel.Powers.Count > 0)
+                {
+                    List<PowerViewModel> powersDelete = new();
+                    viewModel.Powers = powersDelete;
+                    _heroViewModelService.UpdatePowers(powersDelete);
+                }
 
                 string powersIdList = Request.Form["chkPower"].ToString();
 
-                if (!string.IsNullOrEmpty(powersIdList))
+                if (string.IsNullOrEmpty(powersIdList))
+                    _heroViewModelService.UpdatePowers(viewModel.Powers);
+                else
                 {
                     int[] splitPowers = powersIdList.Split(',').Select(int.Parse).ToArray();
 
@@ -167,9 +175,9 @@ namespace Hero_MVC_EFCore.Web.Controllers
                             }
                         }
                     }
+                    
+                    _heroViewModelService.UpdatePowers(viewModel.Powers);
                 }
-
-                _heroViewModelService.UpdatePowers(viewModel.Powers);
 
                 return RedirectToAction(nameof(Index));
             }
