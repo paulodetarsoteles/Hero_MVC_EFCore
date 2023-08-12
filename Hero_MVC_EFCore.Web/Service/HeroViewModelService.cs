@@ -31,7 +31,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -48,7 +49,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {id} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -62,7 +64,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -77,7 +80,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -90,7 +94,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {id} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -106,7 +111,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -120,7 +126,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -134,7 +141,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -148,7 +156,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -161,7 +170,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -175,7 +185,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 

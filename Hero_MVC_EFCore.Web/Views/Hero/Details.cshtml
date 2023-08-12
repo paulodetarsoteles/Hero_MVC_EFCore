@@ -34,12 +34,43 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.UpdateDate)
         </dd>
-        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.SecretIdentityId)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.SecretIdentity.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Powers)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Powers.Count() == 0)
+            {
+                <p>Nenhum poder/arma associado</p>
+            }
+            else
+            {
+                foreach(var item in Model.Powers)
+                {
+                    <ul>@Html.DisplayFor(itemModel => item.Name)</ul>
+                }
+            }
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Films)
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Films.Count() == 0)
+            {
+                <p>Nenhum filme associado</p>
+            }
+            else
+            {
+                foreach (var item in Model.Films)
+                {
+                    <ul>@Html.DisplayFor(itemModel => item.Name)</ul>
+                }
+            }
         </dd>
     </dl>
 </div>

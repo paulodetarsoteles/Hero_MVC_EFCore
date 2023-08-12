@@ -23,18 +23,27 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Console.WriteLine($"Erro ao buscar heróis - {ex.Message}");
+                throw new Exception("Erro ao buscar heróis");
             }
         }
 
         public bool IsPresent(Film film, Hero hero)
         {
-            Film filmRestult = _dataContext.Films.FirstOrDefault(film);
+            try
+            {
+                Film filmRestult = _dataContext.Films.FirstOrDefault(film);
 
-            if (filmRestult.Heroes.FirstOrDefault(hero) is null)
-                return false;
+                if (filmRestult.Heroes.FirstOrDefault(hero) is null)
+                    return false;
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao verificar se heróis e filmes tem vínculo - {ex.Message}");
+                throw new Exception("Erro ao verificar se heróis e filmes tem vínculo");
+            }
         }
     }
 }

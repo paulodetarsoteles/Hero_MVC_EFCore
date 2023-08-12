@@ -48,7 +48,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+                Console.WriteLine($"Identidade Secreta - {MethodBase.GetCurrentMethod()} - {id} - {ex.Message}");
+                throw new Exception($"Identidade Secreta - {ex.Message}");
             }
         }
 
@@ -61,7 +62,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Identidade Secreta - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Identidade Secreta - {ex.Message}");
             }
         }
 
@@ -74,7 +76,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Identidade Secreta - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Identidade Secreta - {ex.Message}");
             }
         }
 
@@ -86,7 +89,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+                Console.WriteLine($"Identidade Secreta - {MethodBase.GetCurrentMethod()} - {id} - {ex.Message}");
+                throw new Exception($"Identidade Secreta - {ex.Message}");
             }
         }
 
@@ -100,7 +104,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Identidade secreta - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Identidade Secreta - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Identidade Secreta - {ex.Message}");
             }
         }
 

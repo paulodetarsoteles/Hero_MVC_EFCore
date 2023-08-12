@@ -21,8 +21,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao buscar lista de poderes/armas");
-                throw new Exception($"Erro ao buscar lista de poderes/armas - {ex.Message}");
+                Console.WriteLine($"Erro ao buscar lista de heróis - {ex.Message}");
+                throw new Exception("Erro ao buscar lista de heróis");
             }
         }
 
@@ -43,8 +43,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao buscar lista de poderes/armas");
-                throw new Exception($"Erro ao buscar lista de poderes/armas - {ex.Message}");
+                Console.WriteLine($"Erro ao buscar lista de poderes/armas - {ex.Message}");
+                throw new Exception("Erro ao buscar lista de poderes/armas");
             }
         }
 
@@ -59,8 +59,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao buscar lista de identidades secretas");
-                throw new Exception($"Erro ao buscar lista de identidades secretas - {ex.Message}");
+                Console.WriteLine($"Erro ao buscar lista de identidades secretas - {ex.Message}");
+                throw new Exception("Erro ao buscar lista de identidades secretas");
             }
         }
 
@@ -72,8 +72,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao vericar se o herói tem poder/arma");
-                throw new Exception($"Erro vericar se o herói tem poder/arma - {ex.Message}");
+                Console.WriteLine($"Erro vericar se o herói tem poder/arma - {ex.Message}");
+                throw new Exception("Erro vericar se o herói tem poder/arma");
             }
         }
 
@@ -85,8 +85,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao contar filmes do herói");
-                throw new Exception($"Erro ao contar filmes do herói - {ex.Message}");
+                Console.WriteLine($"Erro ao contar filmes do herói - {ex.Message}");
+                throw new Exception("Erro ao contar filmes do herói");
             }
         }
 
@@ -101,8 +101,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao inserir entidade");
-                throw new Exception($"Erro ao inserir entidade - {ex.Message}");
+                Console.WriteLine($"Erro ao inserir entidade - {ex.Message}");
+                throw new Exception("Erro ao inserir entidade");
             }
         }
 
@@ -118,8 +118,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao limpar poderes");
-                throw new Exception($"Erro ao limpar poderes - {ex.Message}");
+                Console.WriteLine($"Erro ao limpar poderes - {ex.Message}");
+                throw new Exception("Erro ao limpar poderes");
             }
         }
 
@@ -132,8 +132,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao atualizar poder");
-                throw new Exception($"Erro ao atualizar poder - {ex.Message}");
+                Console.WriteLine($"Erro ao atualizar poder - {ex.Message}");
+                throw new Exception("Erro ao atualizar poder");
             }
         }
     }
