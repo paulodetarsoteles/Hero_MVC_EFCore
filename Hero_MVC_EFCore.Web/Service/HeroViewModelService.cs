@@ -124,21 +124,6 @@ namespace Hero_MVC_EFCore.Web.Service
             }
         }
 
-        public SecretIdentityViewModel GetSecretIdentity(HeroViewModel viewModel)
-        {
-            try
-            {
-                var entity = _mapper.Map<Hero>(viewModel);
-                var result = _heroRepository.GetSecretIdentity(entity);
-
-                return _mapper.Map<SecretIdentityViewModel>(result);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
-            }
-        }
-
         public bool HasPower(HeroViewModel viewModel)
         {
             try

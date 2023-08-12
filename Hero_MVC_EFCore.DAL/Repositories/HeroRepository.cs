@@ -64,22 +64,6 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
         }
 
-        public SecretIdentity GetSecretIdentity(Hero entity)
-        {
-            try
-            {
-                SecretIdentity result = new();
-                result = _dbContext.SecretIdentities.First(x => x.SecretIdentityId == entity.SecretIdentityId);
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro ao buscar identidade secreta");
-                throw new Exception($"Erro ao buscar identidade secreta - {ex.Message}");
-            }
-        }
-
         public bool HasPower(Hero entity)
         {
             try

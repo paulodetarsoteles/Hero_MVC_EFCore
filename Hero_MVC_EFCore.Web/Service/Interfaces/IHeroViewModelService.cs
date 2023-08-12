@@ -13,7 +13,6 @@ namespace Hero_MVC_EFCore.Web.Service.Interfaces
 
         List<PowerViewModel> GetAllPowers();
         List<SecretIdentityViewModel> GetAllSecretIdentities();
-        SecretIdentityViewModel GetSecretIdentity(HeroViewModel viewModel);
         bool HasPower(HeroViewModel viewModel);
         int CountFilms(HeroViewModel viewModel);
         public void UpdatePowers(List<PowerViewModel> viewModel);
