@@ -92,7 +92,7 @@ namespace Hero_MVC_EFCore.Web.Service
 
         #region Especific Methods
 
-                public List<PowerViewModel> GetAllPowers()
+        public List<PowerViewModel> GetAllPowers()
         {
             try
             {

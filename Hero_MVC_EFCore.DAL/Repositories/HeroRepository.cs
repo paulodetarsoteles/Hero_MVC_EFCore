@@ -34,7 +34,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             try
             {
                 List<Power> result = new();
-                result = _dbContext.Powers.AsNoTracking().ToList();
+                result = _dbContext.Powers.ToList();
 
                 return result;
             }
@@ -152,8 +152,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                foreach (Power power in entity)
-                    _dbContext.Powers.Update(power);
+                _dbContext.Powers.UpdateRange(entity);
 
                 _dbContext.SaveChanges();
             }
