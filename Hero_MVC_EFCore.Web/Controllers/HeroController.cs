@@ -116,12 +116,12 @@ namespace Hero_MVC_EFCore.Web.Controllers
                 ViewBag.GetAllPowers = new SelectList(_heroViewModelService.GetAllPowers(), "PowerId", "Name");
                 ViewBag.GetAllSecretIdentities = new SelectList(_heroViewModelService.GetAllSecretIdentities(), "SecretIdentityId", "Name");
 
-                var heroViewModel = _heroViewModelService.GetById(id);
-                var powers = _heroViewModelService.GetPowers(id);
+                //var heroViewModel = _heroViewModelService.GetById(id);
+                //var powers = _heroViewModelService.GetPowers(id);
 
-                heroViewModel.Powers.AddRange(powers);
+                //heroViewModel.Powers.AddRange(heroViewModel.Powers);
 
-                return View(heroViewModel);
+                return View(_heroViewModelService.GetById(id));
             }
             catch
             {

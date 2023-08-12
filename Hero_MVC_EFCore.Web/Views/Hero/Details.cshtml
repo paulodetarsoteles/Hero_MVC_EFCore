@@ -1,4 +1,4 @@
-﻿@model SecretIdentityViewModel
+﻿@model HeroViewModel
 
 @{
     ViewData["Title"] = "Detalhes";
@@ -7,14 +7,14 @@
 <h1>Detalhes</h1>
 
 <div>
-    <h4>Dados da Identidade Secreta</h4>
+    <h4>Dados do Herói</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.SecretIdentityId)
+            @Html.DisplayNameFor(model => model.HeroId)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.SecretIdentityId)
+            @Html.DisplayFor(model => model.HeroId)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
@@ -29,26 +29,22 @@
             @Html.DisplayFor(model => model.Comments)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Hero)
-        </dt>
-        <dd class="col-sm-10">
-            @if (Model.Hero is null)
-            {
-                <span>Sem vínculo</span>
-            }
-            else
-                @Html.DisplayFor(model => model.Hero.Name)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.UpdateDate)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.UpdateDate)
         </dd>
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SecretIdentityId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SecretIdentity.Name)
+        </dd>
     </dl>
 </div>
 <br />
 <div>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.SecretIdentityId  }) |
+    @Html.ActionLink("Editar", "Edit", new { id = Model.HeroId  }) |
     <a asp-action="Index">Voltar</a>
 </div>

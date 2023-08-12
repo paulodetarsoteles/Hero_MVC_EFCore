@@ -26,6 +26,12 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
         }
 
+        public override Hero GetById(int id)
+        {
+            Hero hero = _dbContext.Heroes.Include(h => h.SecretIdentity).Include(h => h.Powers).Include(h => h.Films).First(h => h.HeroId == id);
+            return hero;
+        }
+
         public List<Power> GetAllPowers()
         {
             try
