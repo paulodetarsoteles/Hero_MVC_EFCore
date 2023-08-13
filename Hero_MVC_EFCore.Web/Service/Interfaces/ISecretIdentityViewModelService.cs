@@ -9,7 +9,5 @@ namespace Hero_MVC_EFCore.Web.Service.Interfaces
         void Insert(SecretIdentityViewModel viewModel);
         void Update(SecretIdentityViewModel viewModel);
         void Delete(int id);
-
-        HeroViewModel GetHero(SecretIdentityViewModel viewModel);
     }
 }

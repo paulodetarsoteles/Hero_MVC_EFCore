@@ -166,6 +166,7 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var entityPowerList = _mapper.Map<List<Power>>(viewModel);
+
                 _heroRepository.UpdatePowers(entityPowerList);
             }
             catch (Exception ex)

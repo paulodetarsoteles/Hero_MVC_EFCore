@@ -8,16 +8,17 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 {
     public class HeroRepository : BaseRepository<Hero>, IHeroRepository
     {
-        public HeroRepository(DataContext dataContext) : base(dataContext)
-        {
-
-        }
+        public HeroRepository(DataContext dataContext) : base(dataContext) { }
 
         public override List<Hero> GetAll()
         {
             try
             {
-                return _dbContext.Heroes.Include(h => h.SecretIdentity).Include(h => h.Powers).ToList();
+                return _dbContext.Heroes
+                    .Include(h => h.SecretIdentity)
+                    .Include(h => h.Powers)
+                    .AsNoTracking()
+                    .ToList();
             }
             catch (Exception ex)
             {
@@ -28,7 +29,11 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 
         public override Hero GetById(int id)
         {
-            Hero hero = _dbContext.Heroes.Include(h => h.SecretIdentity).Include(h => h.Powers).Include(h => h.Films).First(h => h.HeroId == id);
+            Hero hero = _dbContext.Heroes
+                .Include(h => h.SecretIdentity)
+                .Include(h => h.Powers)
+                .Include(h => h.Films)
+                .First(h => h.HeroId == id);
             return hero;
         }
 
@@ -37,7 +42,9 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             try
             {
                 List<Power> result = new();
-                result = _dbContext.Powers.AsNoTracking().ToList();
+                result = _dbContext.Powers
+                    .AsNoTracking()
+                    .ToList();
 
                 return result;
             }
@@ -53,7 +60,9 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             try
             {
                 List<SecretIdentity> result = new();
-                result = _dbContext.SecretIdentities.ToList();
+                result = _dbContext.SecretIdentities
+                    .AsNoTracking()
+                    .ToList();
 
                 return result;
             }
@@ -68,7 +77,9 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                return _dbContext.Heroes.First(x => x.HeroId == entity.HeroId).Powers.Any();
+                return _dbContext.Heroes
+                    .First(x => x.HeroId == entity.HeroId)
+                    .Powers.Any();
             }
             catch (Exception ex)
             {
@@ -81,7 +92,9 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                return _dbContext.Heroes.First(x => x.HeroId == entity.HeroId).Films.Count();
+                return _dbContext.Heroes
+                    .First(x => x.HeroId == entity.HeroId)
+                    .Films.Count();
             }
             catch (Exception ex)
             {
@@ -97,7 +110,9 @@ namespace Hero_MVC_EFCore.DAL.Repositories
                 _dbContext.AddAsync(entity);
                 _dbContext.SaveChanges();
 
-                return _dbContext.Heroes.OrderByDescending(h => h.HeroId).First().HeroId;
+                return _dbContext.Heroes
+                    .OrderByDescending(h => h.HeroId)
+                    .First().HeroId;
             }
             catch (Exception ex)
             {
@@ -110,10 +125,11 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                List<Power> powers = _dbContext.Powers.Where(p => p.HeroId ==  heroId).AsNoTracking().ToList();
-                powers.ForEach(power => power.HeroId = null);
+                List<Power> powers = _dbContext.Powers
+                    .Where(p => p.HeroId == heroId)
+                    .ToList();
 
-                _dbContext.UpdateRange(powers);
+                powers.ForEach(power => power.HeroId = null);
                 _dbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -123,11 +139,18 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             }
         }
 
-        public void UpdatePowers(List<Power> entity)
+        public void UpdatePowers(List<Power> entityList)
         {
             try
             {
-                _dbContext.UpdateRange(entity);
+                foreach (Power entity in entityList)
+                {
+                    Power power = _dbContext.Powers.First(p => p.PowerId == entity.PowerId);
+
+                    _dbContext.Entry(power).CurrentValues.SetValues(entity);
+                    _dbContext.Update(power);
+                }
+
                 _dbContext.SaveChanges();
             }
             catch (Exception ex)

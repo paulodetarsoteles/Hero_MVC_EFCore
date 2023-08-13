@@ -7,17 +7,15 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 {
     public class FilmRepository : BaseRepository<Film>, IFilmRepository
     {
-        private readonly DataContext _dataContext;
-        public FilmRepository(DataContext dataContext) : base(dataContext)
-        {
-            _dataContext = dataContext;
-        }
+        public FilmRepository(DataContext dataContext) : base(dataContext) { }
 
         public List<Hero> GetHeroes(Film film)
         {
             try
             {
-                List<Hero> result = _dataContext.Films.FirstOrDefault(film).Heroes.ToList();
+                List<Hero> result = _dbContext.Films
+                    .FirstOrDefault(film)
+                    .Heroes.ToList();
 
                 return result;
             }
@@ -32,7 +30,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                Film filmRestult = _dataContext.Films.FirstOrDefault(film);
+                Film filmRestult = _dbContext.Films.FirstOrDefault(film);
 
                 if (filmRestult.Heroes.FirstOrDefault(hero) is null)
                     return false;

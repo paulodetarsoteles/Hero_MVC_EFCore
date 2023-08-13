@@ -93,22 +93,5 @@ namespace Hero_MVC_EFCore.Web.Service
                 throw new Exception($"Identidade Secreta - {ex.Message}");
             }
         }
-
-        #region Especific Methods
-
-        public HeroViewModel GetHero(SecretIdentityViewModel viewModel)
-        {
-            try
-            {
-                throw new NotImplementedException();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Identidade Secreta - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
-                throw new Exception($"Identidade Secreta - {ex.Message}");
-            }
-        }
-
-        #endregion
     }
 }
