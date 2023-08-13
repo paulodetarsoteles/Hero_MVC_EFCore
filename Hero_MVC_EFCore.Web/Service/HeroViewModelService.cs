@@ -31,7 +31,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -48,7 +49,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {id} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -57,11 +59,13 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var entity = _mapper.Map<Hero>(viewModel);
+
                 _heroRepository.Insert(entity);
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -70,11 +74,14 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var entity = _mapper.Map<Hero>(viewModel);
+
+                _heroRepository.CleanPowers(entity.HeroId);
                 _heroRepository.Update(entity);
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -82,11 +89,13 @@ namespace Hero_MVC_EFCore.Web.Service
         {
             try
             {
+                _heroRepository.CleanPowers(id);
                 _heroRepository.Delete(id);
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {id} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -97,25 +106,13 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var entity = _heroRepository.GetAllPowers();
+
                 return _mapper.Map<List<PowerViewModel>>(entity);
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
-            }
-        }
-
-        public List<PowerViewModel> GetPowers(int id)
-        {
-            try
-            {
-                var result = _heroRepository.GetPowers(id);
-
-                return _mapper.Map<List<PowerViewModel>>(result);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -129,22 +126,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
-            }
-        }
-
-        public SecretIdentityViewModel GetSecretIdentity(HeroViewModel viewModel)
-        {
-            try
-            {
-                var entity = _mapper.Map<Hero>(viewModel);
-                var result = _heroRepository.GetSecretIdentity(entity);
-
-                return _mapper.Map<SecretIdentityViewModel>(result);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -158,7 +141,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -172,7 +156,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -181,11 +166,13 @@ namespace Hero_MVC_EFCore.Web.Service
             try
             {
                 var entityPowerList = _mapper.Map<List<Power>>(viewModel);
+
                 _heroRepository.UpdatePowers(entityPowerList);
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 
@@ -199,7 +186,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Herói - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Herói - {ex.Message}");
             }
         }
 

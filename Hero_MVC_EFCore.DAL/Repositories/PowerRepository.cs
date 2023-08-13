@@ -7,10 +7,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 {
     public class PowerRepository : BaseRepository<Power>, IPowerRepository
     {
-        public PowerRepository(DataContext dataContext) : base(dataContext)
-        {
-
-        }
+        public PowerRepository(DataContext dataContext) : base(dataContext) { }
 
         public Hero GetHero(Power entity)
         {

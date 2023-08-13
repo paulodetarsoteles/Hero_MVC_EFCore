@@ -7,34 +7,41 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 {
     public class FilmRepository : BaseRepository<Film>, IFilmRepository
     {
-        private readonly DataContext _dataContext;
-        public FilmRepository(DataContext dataContext) : base(dataContext)
-        {
-            _dataContext = dataContext;
-        }
+        public FilmRepository(DataContext dataContext) : base(dataContext) { }
 
         public List<Hero> GetHeroes(Film film)
         {
             try
             {
-                List<Hero> result = _dataContext.Films.FirstOrDefault(film).Heroes.ToList();
+                List<Hero> result = _dbContext.Films
+                    .FirstOrDefault(film)
+                    .Heroes.ToList();
 
                 return result;
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                Console.WriteLine($"Erro ao buscar heróis - {ex.Message}");
+                throw new Exception("Erro ao buscar heróis");
             }
         }
 
         public bool IsPresent(Film film, Hero hero)
         {
-            Film filmRestult = _dataContext.Films.FirstOrDefault(film);
+            try
+            {
+                Film filmRestult = _dbContext.Films.FirstOrDefault(film);
 
-            if (filmRestult.Heroes.FirstOrDefault(hero) is null)
-                return false;
+                if (filmRestult.Heroes.FirstOrDefault(hero) is null)
+                    return false;
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao verificar se heróis e filmes tem vínculo - {ex.Message}");
+                throw new Exception("Erro ao verificar se heróis e filmes tem vínculo");
+            }
         }
     }
 }

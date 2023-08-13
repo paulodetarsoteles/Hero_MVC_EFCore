@@ -31,7 +31,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Filme - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                throw new Exception($"Filme - {ex.Message}");
             }
         }
 
@@ -48,7 +49,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+                Console.WriteLine($"Filme - {MethodBase.GetCurrentMethod()} - {id} - {ex.Message}");
+                throw new Exception($"Filme - {ex.Message}");
             }
         }
 
@@ -61,7 +63,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Filme - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Filme - {ex.Message}");
             }
         }
 
@@ -74,7 +77,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Filme - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Filme - {ex.Message}");
             }
         }
 
@@ -86,7 +90,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+                Console.WriteLine($"Filme - {MethodBase.GetCurrentMethod()} - {id} - {ex.Message}");
+                throw new Exception($"Filme - {ex.Message}");
             }
         }
 
@@ -100,7 +105,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Filme - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Filme - {ex.Message}");
             }
         }
 
@@ -112,7 +118,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Filme - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Filme - {MethodBase.GetCurrentMethod()} - {filmViewModel.Name} - {heroViewModel.Name} - {ex.Message}");
+                throw new Exception($"Filme - {ex.Message}");
             }
         }
 

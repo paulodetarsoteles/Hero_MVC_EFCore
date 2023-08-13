@@ -31,7 +31,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Poder - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                throw new Exception($"Poder - {ex.Message}");
             }
         }
 
@@ -48,7 +49,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+                Console.WriteLine($"Poder - {MethodBase.GetCurrentMethod()} - {id} - {ex.Message}");
+                throw new Exception($"Poder - {ex.Message}");
             }
         }
 
@@ -61,7 +63,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Poder - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Poder - {ex.Message}");
             }
         }
 
@@ -74,7 +77,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Poder - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Poder - {ex.Message}");
             }
         }
 
@@ -86,7 +90,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - Id:{id} - {ex.Message}");
+                Console.WriteLine($"Poder - {MethodBase.GetCurrentMethod()} - {id} - {ex.Message}");
+                throw new Exception($"Poder - {ex.Message}");
             }
         }
 
@@ -100,7 +105,8 @@ namespace Hero_MVC_EFCore.Web.Service
             }
             catch (Exception ex)
             {
-                throw new Exception($"Poder - {MethodBase.GetCurrentMethod()} - {ex.Message}");
+                Console.WriteLine($"Poder - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                throw new Exception($"Poder - {ex.Message}");
             }
         }
 

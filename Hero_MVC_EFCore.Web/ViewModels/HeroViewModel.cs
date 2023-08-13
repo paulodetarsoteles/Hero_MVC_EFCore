@@ -11,7 +11,7 @@ namespace Hero_MVC_EFCore.Web.ViewModels
         [Display(Name = "Código do herói")]
         public int HeroId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Insira um nome")]
         [Display(Name = "Nome")]
         public string Name { get; set; }
 
@@ -29,6 +29,7 @@ namespace Hero_MVC_EFCore.Web.ViewModels
         [Display(Name = "Poderes ou armas")]
         public List<PowerViewModel> Powers { get; set; }
 
+        [Required(ErrorMessage = "Uma identidade é necessária")]
         [Display(Name = "Identidade secreta")]
         public int? SecretIdentityId { get; set; } = null;
 

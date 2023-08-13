@@ -66,8 +66,9 @@ namespace Hero_MVC_EFCore.Web.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("", e.Message);
                 return View(viewModel);
             }
         }
@@ -99,8 +100,9 @@ namespace Hero_MVC_EFCore.Web.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("", e.Message);
                 return View(viewModel);
             }
         }
@@ -134,8 +136,9 @@ namespace Hero_MVC_EFCore.Web.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception e)
             {
+                ModelState.AddModelError("", e.Message);
                 return View(viewModel);
             }
         }

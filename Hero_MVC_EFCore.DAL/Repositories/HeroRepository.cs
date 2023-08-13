@@ -8,10 +8,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 {
     public class HeroRepository : BaseRepository<Hero>, IHeroRepository
     {
-        public HeroRepository(DataContext dataContext) : base(dataContext)
-        {
-
-        }
+        public HeroRepository(DataContext dataContext) : base(dataContext) { }
 
         public override List<Hero> GetAll()
         {
@@ -20,13 +17,24 @@ namespace Hero_MVC_EFCore.DAL.Repositories
                 return _dbContext.Heroes
                     .Include(h => h.SecretIdentity)
                     .Include(h => h.Powers)
+                    .AsNoTracking()
                     .ToList();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao buscar lista de poderes/armas");
-                throw new Exception($"Erro ao buscar lista de poderes/armas - {ex.Message}");
+                Console.WriteLine($"Erro ao buscar lista de heróis - {ex.Message}");
+                throw new Exception("Erro ao buscar lista de heróis");
             }
+        }
+
+        public override Hero GetById(int id)
+        {
+            Hero hero = _dbContext.Heroes
+                .Include(h => h.SecretIdentity)
+                .Include(h => h.Powers)
+                .Include(h => h.Films)
+                .First(h => h.HeroId == id);
+            return hero;
         }
 
         public List<Power> GetAllPowers()
@@ -34,30 +42,16 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             try
             {
                 List<Power> result = new();
-                result = _dbContext.Powers.ToList();
+                result = _dbContext.Powers
+                    .AsNoTracking()
+                    .ToList();
 
                 return result;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao buscar lista de poderes/armas");
-                throw new Exception($"Erro ao buscar lista de poderes/armas - {ex.Message}");
-            }
-        }
-
-        public List<Power> GetPowers(int id)
-        {
-            try
-            {
-                List<Power> result = new();
-                result = _dbContext.Powers.ToList().FindAll(x => x.HeroId == id);
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro ao buscar lista de poderes/armas");
-                throw new Exception($"Erro ao buscar lista de poderes/armas - {ex.Message}");
+                Console.WriteLine($"Erro ao buscar lista de poderes/armas - {ex.Message}");
+                throw new Exception("Erro ao buscar lista de poderes/armas");
             }
         }
 
@@ -66,30 +60,16 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             try
             {
                 List<SecretIdentity> result = new();
-                result = _dbContext.SecretIdentities.ToList();
+                result = _dbContext.SecretIdentities
+                    .AsNoTracking()
+                    .ToList();
 
                 return result;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao buscar lista de identidades secretas");
-                throw new Exception($"Erro ao buscar lista de identidades secretas - {ex.Message}");
-            }
-        }
-
-        public SecretIdentity GetSecretIdentity(Hero entity)
-        {
-            try
-            {
-                SecretIdentity result = new();
-                result = _dbContext.SecretIdentities.First(x => x.SecretIdentityId == entity.SecretIdentityId);
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro ao buscar identidade secreta");
-                throw new Exception($"Erro ao buscar identidade secreta - {ex.Message}");
+                Console.WriteLine($"Erro ao buscar lista de identidades secretas - {ex.Message}");
+                throw new Exception("Erro ao buscar lista de identidades secretas");
             }
         }
 
@@ -97,12 +77,14 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                return _dbContext.Heroes.First(x => x.HeroId == entity.HeroId).Powers.Any();
+                return _dbContext.Heroes
+                    .First(x => x.HeroId == entity.HeroId)
+                    .Powers.Any();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao vericar se o herói tem poder/arma");
-                throw new Exception($"Erro vericar se o herói tem poder/arma - {ex.Message}");
+                Console.WriteLine($"Erro vericar se o herói tem poder/arma - {ex.Message}");
+                throw new Exception("Erro vericar se o herói tem poder/arma");
             }
         }
 
@@ -110,12 +92,14 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                return _dbContext.Heroes.First(x => x.HeroId == entity.HeroId).Films.Count();
+                return _dbContext.Heroes
+                    .First(x => x.HeroId == entity.HeroId)
+                    .Films.Count();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao contar filmes do herói");
-                throw new Exception($"Erro ao contar filmes do herói - {ex.Message}");
+                Console.WriteLine($"Erro ao contar filmes do herói - {ex.Message}");
+                throw new Exception("Erro ao contar filmes do herói");
             }
         }
 
@@ -126,40 +110,53 @@ namespace Hero_MVC_EFCore.DAL.Repositories
                 _dbContext.AddAsync(entity);
                 _dbContext.SaveChanges();
 
-                return _dbContext.Heroes.OrderByDescending(h => h.HeroId).First().HeroId;
+                return _dbContext.Heroes
+                    .OrderByDescending(h => h.HeroId)
+                    .First().HeroId;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao inserir entidade");
-                throw new Exception($"Erro ao inserir entidade - {ex.Message}");
+                Console.WriteLine($"Erro ao inserir entidade - {ex.Message}");
+                throw new Exception("Erro ao inserir entidade");
             }
         }
 
-        public override void Delete(int id)
-        {
-            var powers = _dbContext.Powers.Where(p => p.HeroId == id).AsNoTracking().ToList(); 
-            
-            foreach (var power in powers)
-                power.HeroId = null;
-
-            _dbContext.UpdateRange(powers);
-            _dbContext.SaveChanges();
-
-            base.Delete(id);
-        }
-
-        public void UpdatePowers(List<Power> entity)
+        public void CleanPowers(int heroId)
         {
             try
             {
-                _dbContext.Powers.UpdateRange(entity);
+                List<Power> powers = _dbContext.Powers
+                    .Where(p => p.HeroId == heroId)
+                    .ToList();
+
+                powers.ForEach(power => power.HeroId = null);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao limpar poderes - {ex.Message}");
+                throw new Exception("Erro ao limpar poderes");
+            }
+        }
+
+        public void UpdatePowers(List<Power> entityList)
+        {
+            try
+            {
+                foreach (Power entity in entityList)
+                {
+                    Power power = _dbContext.Powers.First(p => p.PowerId == entity.PowerId);
+
+                    _dbContext.Entry(power).CurrentValues.SetValues(entity);
+                    _dbContext.Update(power);
+                }
 
                 _dbContext.SaveChanges();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao atualizar poder");
-                throw new Exception($"Erro ao atualizar poder - {ex.Message}");
+                Console.WriteLine($"Erro ao atualizar poder - {ex.Message}");
+                throw new Exception("Erro ao atualizar poder");
             }
         }
     }

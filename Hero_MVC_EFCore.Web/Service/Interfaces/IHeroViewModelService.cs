@@ -12,12 +12,10 @@ namespace Hero_MVC_EFCore.Web.Service.Interfaces
         void Delete(int id);
 
         List<PowerViewModel> GetAllPowers();
-        List<PowerViewModel> GetPowers(int id);
         List<SecretIdentityViewModel> GetAllSecretIdentities();
-        SecretIdentityViewModel GetSecretIdentity(HeroViewModel viewModel);
         bool HasPower(HeroViewModel viewModel);
         int CountFilms(HeroViewModel viewModel);
-        public void UpdatePowers(int heroId, List<PowerViewModel> viewModel);
+        public void UpdatePowers(List<PowerViewModel> viewModel);
         public int InsertHero(HeroViewModel viewModel);
     }
 }
