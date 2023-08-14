@@ -14,11 +14,9 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                List<Hero> result = _dbContext.Heroes
+                return _dbContext.Heroes
                     .AsNoTracking()
-                    .ToList();
-
-                return result;
+                    .ToList(); ;
             }
             catch (Exception ex)
             {
