@@ -10,7 +10,7 @@ namespace Hero_MVC_EFCore.Web.Service.Interfaces
         void Update(FilmViewModel viewModel);
         void Delete(int id);
 
-        List<HeroViewModel> GetHeroes(FilmViewModel viewModel);
+        List<HeroViewModel> GetAllHeroes();
         bool IsPresent(FilmViewModel filmViewModel, HeroViewModel heroViewModel);
     }
 }

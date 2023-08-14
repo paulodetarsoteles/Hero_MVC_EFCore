@@ -10,7 +10,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
     {
         public FilmRepository(DataContext dataContext) : base(dataContext) { }
 
-        public List<Hero> GetHeroes(Film film)
+        public List<Hero> GetAllHeroes()
         {
             try
             {
