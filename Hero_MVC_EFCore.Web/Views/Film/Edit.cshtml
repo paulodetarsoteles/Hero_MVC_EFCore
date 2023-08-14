@@ -27,6 +27,32 @@
                 <input asp-for="Rate" class="form-control" />
                 <span asp-validation-for="Rate" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Heroes" class="control-label"></label>
+                <div class="row">
+                    <div class="col-md-8">
+                        @Html.DropDownList("HeroId", (SelectList)ViewBag.GetAllHeroes, "Selecione...", new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2">
+                        <div class="btn btn-secondary" id="btnAddHero">
+                            Adicionar
+                        </div>
+                    </div>
+                </div>
+                <ul id="listHeroes">
+                    @if (Model.Heroes is null)
+                    {
+                        <li>Nenhum herói adicionado</li>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.Heroes)
+                        {
+                            <li>@Html.DisplayFor(itemModel => item.Name)<input type='hidden' name='chkHero' id='chkHero' class='chkHero' value=@item.HeroId /></li>
+                        }
+                    }
+                </ul>
+            </div>
             <br />
             <div class="form-group">
                 <input type="submit" value="Salvar" class="btn btn-primary" />
@@ -42,4 +68,5 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script src="~/js/Film/Edit.js" asp-append-version="true"></script>
 }
