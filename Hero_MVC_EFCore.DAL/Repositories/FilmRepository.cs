@@ -2,6 +2,7 @@
 using Hero_MVC_EFCore.DAL.Repositories.Common;
 using Hero_MVC_EFCore.DAL.Repositories.Interfaces;
 using Hero_MVC_EFCore.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Hero_MVC_EFCore.DAL.Repositories
 {
@@ -13,9 +14,9 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                List<Hero> result = _dbContext.Films
-                    .FirstOrDefault(film)
-                    .Heroes.ToList();
+                List<Hero> result = _dbContext.Heroes
+                    .AsNoTracking()
+                    .ToList();
 
                 return result;
             }

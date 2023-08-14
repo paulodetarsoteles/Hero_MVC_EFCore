@@ -29,24 +29,20 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 
         public override Hero GetById(int id)
         {
-            Hero hero = _dbContext.Heroes
+            return _dbContext.Heroes
                 .Include(h => h.SecretIdentity)
                 .Include(h => h.Powers)
                 .Include(h => h.Films)
-                .First(h => h.HeroId == id);
-            return hero;
+                .First(h => h.HeroId == id); ;
         }
 
         public List<Power> GetAllPowers()
         {
             try
             {
-                List<Power> result = new();
-                result = _dbContext.Powers
+                return _dbContext.Powers
                     .AsNoTracking()
-                    .ToList();
-
-                return result;
+                    .ToList(); ;
             }
             catch (Exception ex)
             {
@@ -59,12 +55,9 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         {
             try
             {
-                List<SecretIdentity> result = new();
-                result = _dbContext.SecretIdentities
+                return _dbContext.SecretIdentities
                     .AsNoTracking()
-                    .ToList();
-
-                return result;
+                    .ToList(); ;
             }
             catch (Exception ex)
             {
