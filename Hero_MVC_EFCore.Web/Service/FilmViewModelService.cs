@@ -74,6 +74,7 @@ namespace Hero_MVC_EFCore.Web.Service
             {
                 var entity = _mapper.Map<Film>(viewModel);
                 _filmRepository.Update(entity);
+                _filmRepository.UpdateHeroes(entity);
             }
             catch (Exception ex)
             {
@@ -97,15 +98,20 @@ namespace Hero_MVC_EFCore.Web.Service
 
         #region Especific Methods
 
-        public List<HeroViewModel> GetHeroes(FilmViewModel viewModel)
+        public List<HeroViewModel> GetAllHeroes()
         {
             try
             {
-                throw new NotImplementedException();
+                var result = _filmRepository.GetAllHeroes();
+
+                if (result is null)
+                    throw new Exception("Lista de heróis retornou nula.");
+
+                return _mapper.Map<List<HeroViewModel>>(result);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Filme - {MethodBase.GetCurrentMethod()} - {viewModel.Name} - {ex.Message}");
+                Console.WriteLine($"Filme - {MethodBase.GetCurrentMethod()} - {ex.Message}");
                 throw new Exception($"Filme - {ex.Message}");
             }
         }

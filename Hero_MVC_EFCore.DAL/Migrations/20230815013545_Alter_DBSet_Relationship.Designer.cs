@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hero_MVC_EFCore.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230730232430_Adição_Enum_ao_Power")]
-    partial class Adição_Enum_ao_Power
+    [Migration("20230815013545_Alter_DBSet_Relationship")]
+    partial class Alter_DBSet_Relationship
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,21 +24,6 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("FilmHero", b =>
-                {
-                    b.Property<int>("FilmsFilmId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("HeroesHeroId")
-                        .HasColumnType("int");
-
-                    b.HasKey("FilmsFilmId", "HeroesHeroId");
-
-                    b.HasIndex("HeroesHeroId");
-
-                    b.ToTable("FilmHero");
-                });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Film", b =>
                 {
@@ -57,6 +42,24 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                     b.HasKey("FilmId");
 
                     b.ToTable("Films");
+                });
+
+            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.FilmsHeroes", b =>
+                {
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HeroId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FilmsHeroesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmId", "HeroId");
+
+                    b.HasIndex("HeroId");
+
+                    b.ToTable("FilmsHeroes");
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Hero", b =>
@@ -136,19 +139,23 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                     b.ToTable("SecretIdentities");
                 });
 
-            modelBuilder.Entity("FilmHero", b =>
+            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.FilmsHeroes", b =>
                 {
-                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Film", null)
+                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Film", "Film")
                         .WithMany()
-                        .HasForeignKey("FilmsFilmId")
+                        .HasForeignKey("FilmId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Hero", null)
+                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Hero", "Hero")
                         .WithMany()
-                        .HasForeignKey("HeroesHeroId")
+                        .HasForeignKey("HeroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Film");
+
+                    b.Navigation("Hero");
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Hero", b =>

@@ -47,6 +47,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
             {
                 ViewBag.GetAllPowers = new SelectList(_heroViewModelService.GetAllPowers(), "PowerId", "Name");
                 ViewBag.GetAllSecretIdentities = new SelectList(_heroViewModelService.GetAllSecretIdentities(), "SecretIdentityId", "Name");
+
                 return View();
             }
             catch

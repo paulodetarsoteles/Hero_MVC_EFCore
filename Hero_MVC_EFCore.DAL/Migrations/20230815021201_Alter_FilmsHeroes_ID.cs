@@ -5,24 +5,14 @@
 namespace Hero_MVC_EFCore.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Adicao_do_Film_e_Relacao : Migration
+    public partial class Alter_FilmsHeroes_ID : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Films",
-                columns: table => new
-                {
-                    FilmId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Rate = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Films", x => x.FilmId);
-                });
+            migrationBuilder.DropColumn(
+                name: "FilmsHeroesId",
+                table: "FilmsHeroes");
 
             migrationBuilder.CreateTable(
                 name: "FilmHero",
@@ -60,8 +50,12 @@ namespace Hero_MVC_EFCore.DAL.Migrations
             migrationBuilder.DropTable(
                 name: "FilmHero");
 
-            migrationBuilder.DropTable(
-                name: "Films");
+            migrationBuilder.AddColumn<int>(
+                name: "FilmsHeroesId",
+                table: "FilmsHeroes",
+                type: "int",
+                nullable: false,
+                defaultValue: 0);
         }
     }
 }

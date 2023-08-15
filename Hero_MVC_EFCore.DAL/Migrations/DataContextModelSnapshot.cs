@@ -34,7 +34,7 @@ namespace Hero_MVC_EFCore.DAL.Migrations
 
                     b.HasIndex("HeroesHeroId");
 
-                    b.ToTable("FilmHero", (string)null);
+                    b.ToTable("FilmHero");
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Film", b =>
@@ -53,7 +53,22 @@ namespace Hero_MVC_EFCore.DAL.Migrations
 
                     b.HasKey("FilmId");
 
-                    b.ToTable("Films", (string)null);
+                    b.ToTable("Films");
+                });
+
+            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.FilmsHeroes", b =>
+                {
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HeroId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmId", "HeroId");
+
+                    b.HasIndex("HeroId");
+
+                    b.ToTable("FilmsHeroes");
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Hero", b =>
@@ -84,7 +99,7 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                     b.HasIndex("SecretIdentityId")
                         .IsUnique();
 
-                    b.ToTable("Heroes", (string)null);
+                    b.ToTable("Heroes");
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Power", b =>
@@ -108,7 +123,7 @@ namespace Hero_MVC_EFCore.DAL.Migrations
 
                     b.HasIndex("HeroId");
 
-                    b.ToTable("Powers", (string)null);
+                    b.ToTable("Powers");
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.SecretIdentity", b =>
@@ -130,7 +145,7 @@ namespace Hero_MVC_EFCore.DAL.Migrations
 
                     b.HasKey("SecretIdentityId");
 
-                    b.ToTable("SecretIdentities", (string)null);
+                    b.ToTable("SecretIdentities");
                 });
 
             modelBuilder.Entity("FilmHero", b =>
@@ -146,6 +161,25 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                         .HasForeignKey("HeroesHeroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.FilmsHeroes", b =>
+                {
+                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Film", "Film")
+                        .WithMany()
+                        .HasForeignKey("FilmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Hero", "Hero")
+                        .WithMany()
+                        .HasForeignKey("HeroId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Film");
+
+                    b.Navigation("Hero");
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Hero", b =>

@@ -1,6 +1,8 @@
-﻿using Hero_MVC_EFCore.Web.Service.Interfaces;
+﻿using Hero_MVC_EFCore.Web.Service;
+using Hero_MVC_EFCore.Web.Service.Interfaces;
 using Hero_MVC_EFCore.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Hero_MVC_EFCore.Web.Controllers
 {
@@ -78,6 +80,8 @@ namespace Hero_MVC_EFCore.Web.Controllers
         {
             try
             {
+                ViewBag.GetAllHeroes = new SelectList(_service.GetAllHeroes(), "HeroId", "Name");
+
                 return View(_service.GetById(id));
             }
             catch
@@ -95,6 +99,29 @@ namespace Hero_MVC_EFCore.Web.Controllers
             {
                 if (!ModelState.IsValid)
                     return View(viewModel);
+
+                ViewBag.GetAllHeroes = new SelectList(_service.GetAllHeroes(), "HeroId", "Name");
+
+                string heroIdList = Request.Form["chkHero"].ToString();
+
+                if (!string.IsNullOrEmpty(heroIdList))
+                {
+                    int[] splitHeroes = heroIdList.Split(',').Select(int.Parse).ToArray();
+
+                    if (splitHeroes.Length > 0)
+                    {
+                        List<HeroViewModel> heroes = _service.GetAllHeroes();
+                        viewModel.Heroes = new();
+
+                        foreach (int heroId in splitHeroes)
+                        {
+                            HeroViewModel hero = heroes.First(h => h.HeroId == heroId);
+
+                            if (hero is not null)
+                                viewModel.Heroes.Add(hero);
+                        }
+                    }
+                }
 
                 _service.Update(viewModel);
 
