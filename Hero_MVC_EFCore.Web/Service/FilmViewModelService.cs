@@ -74,6 +74,7 @@ namespace Hero_MVC_EFCore.Web.Service
             {
                 var entity = _mapper.Map<Film>(viewModel);
                 _filmRepository.Update(entity);
+                _filmRepository.UpdateHeroes(entity);
             }
             catch (Exception ex)
             {

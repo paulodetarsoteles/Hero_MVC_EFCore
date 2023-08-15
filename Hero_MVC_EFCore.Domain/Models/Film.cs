@@ -5,6 +5,6 @@
         public int FilmId { get; set; }
         public string Name { get; set; }
         public int Rate { get; set; }
-        public List<Hero> Heroes { get; set; }
+        public virtual List<Hero> Heroes { get; set; }
     }
 }

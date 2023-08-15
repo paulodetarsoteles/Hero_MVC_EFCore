@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hero_MVC_EFCore.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230728001449_HeroAndPower_Entities")]
-    partial class HeroAndPower_Entities
+    [Migration("20230815012305_Create_DataBase")]
+    partial class Create_DataBase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,43 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Film", b =>
+                {
+                    b.Property<int>("FilmId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FilmId"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rate")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmId");
+
+                    b.ToTable("Films");
+                });
+
+            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.FilmsHeroes", b =>
+                {
+                    b.Property<int>("FilmId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HeroId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FilmsHeroesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FilmId", "HeroId");
+
+                    b.HasIndex("HeroId");
+
+                    b.ToTable("FilmsHeroes");
+                });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Hero", b =>
                 {
@@ -42,10 +79,16 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("SecretIdentityId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("HeroId");
+
+                    b.HasIndex("SecretIdentityId")
+                        .IsUnique();
 
                     b.ToTable("Heroes");
                 });
@@ -58,11 +101,14 @@ namespace Hero_MVC_EFCore.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PowerId"));
 
-                    b.Property<int>("HeroId")
+                    b.Property<int?>("HeroId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Type")
+                        .HasColumnType("int");
 
                     b.HasKey("PowerId");
 
@@ -93,20 +139,53 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                     b.ToTable("SecretIdentities");
                 });
 
-            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Power", b =>
+            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.FilmsHeroes", b =>
                 {
-                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Hero", "MyProperty")
-                        .WithMany("Powers")
+                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Film", "Film")
+                        .WithMany()
+                        .HasForeignKey("FilmId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Hero", "Hero")
+                        .WithMany()
                         .HasForeignKey("HeroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("MyProperty");
+                    b.Navigation("Film");
+
+                    b.Navigation("Hero");
+                });
+
+            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Hero", b =>
+                {
+                    b.HasOne("Hero_MVC_EFCore.Domain.Models.SecretIdentity", "SecretIdentity")
+                        .WithOne("Hero")
+                        .HasForeignKey("Hero_MVC_EFCore.Domain.Models.Hero", "SecretIdentityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SecretIdentity");
+                });
+
+            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Power", b =>
+                {
+                    b.HasOne("Hero_MVC_EFCore.Domain.Models.Hero", "Hero")
+                        .WithMany("Powers")
+                        .HasForeignKey("HeroId");
+
+                    b.Navigation("Hero");
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Hero", b =>
                 {
                     b.Navigation("Powers");
+                });
+
+            modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.SecretIdentity", b =>
+                {
+                    b.Navigation("Hero");
                 });
 #pragma warning restore 612, 618
         }

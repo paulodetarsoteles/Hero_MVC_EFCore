@@ -12,5 +12,6 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Interfaces
 
         List<Hero> GetAllHeroes();
         bool IsPresent(Film film, Hero hero);
+        void UpdateHeroes(Film entity);
     }
 }

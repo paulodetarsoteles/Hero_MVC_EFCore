@@ -9,9 +9,9 @@ namespace Hero_MVC_EFCore.Domain.Models
         public bool Active { get; set; }
         public string Comments { get; set; }
         public DateTime UpdateDate { get; set; }
-        public List<Power> Powers { get; set; }
+        public virtual List<Power> Powers { get; set; }
         public int SecretIdentityId { get; set; }
         public SecretIdentity SecretIdentity { get; set; }
-        public List<Film> Films { get; set; }
+        public virtual List<Film> Films { get; set; }
     }
 }

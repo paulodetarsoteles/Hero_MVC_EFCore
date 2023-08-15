@@ -1,7 +1,7 @@
 ﻿//Edição dos heróis no filmes
 $(document).ready(function () {
     $("#btnAddHero").click(function () {
-        var chkRptPower = false;
+        var chkRptHero = false;
         var currentValue = $("#HeroId option:selected").text().trim();
 
         if (currentValue == "Selecione...") {

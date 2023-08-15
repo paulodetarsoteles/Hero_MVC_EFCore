@@ -102,7 +102,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
 
                 ViewBag.GetAllHeroes = new SelectList(_service.GetAllHeroes(), "HeroId", "Name");
 
-                string heroIdList = Request.Form["chkPower"].ToString();
+                string heroIdList = Request.Form["chkHero"].ToString();
 
                 if (!string.IsNullOrEmpty(heroIdList))
                 {
@@ -118,7 +118,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
                             HeroViewModel hero = heroes.First(h => h.HeroId == heroId);
 
                             if (hero is not null)
-                                viewModel.Heroes.Add(hero));
+                                viewModel.Heroes.Add(hero);
                         }
                     }
                 }

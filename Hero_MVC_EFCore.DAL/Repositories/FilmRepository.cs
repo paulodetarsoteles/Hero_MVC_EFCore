@@ -15,7 +15,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             try
             {
                 return _dbContext.Heroes
-                    .AsNoTracking()
+                    //.AsNoTracking()
                     .ToList(); ;
             }
             catch (Exception ex)
@@ -41,6 +41,34 @@ namespace Hero_MVC_EFCore.DAL.Repositories
                 Console.WriteLine($"Erro ao verificar se heróis e filmes tem vínculo - {ex.Message}");
                 throw new Exception("Erro ao verificar se heróis e filmes tem vínculo");
             }
+        }
+
+        public void UpdateHeroes(Film entity)
+        {
+            List<FilmsHeroes> relations = _dbContext.FilmsHeroes.Where(r => r.FilmId == entity.FilmId).ToList();
+            
+            if (relations.Count > 0 )
+            {
+                _dbContext.FilmsHeroes.RemoveRange(relations);
+                _dbContext.SaveChanges();
+            }
+
+            relations.Clear();
+
+            var heroes = entity.Heroes;
+
+            foreach (var hero in heroes)
+            {
+                relations.Add(new FilmsHeroes 
+                {
+                    FilmId = entity.FilmId,
+                    HeroId = hero.HeroId
+                });
+            }
+
+            _dbContext.AddRange(relations);
+
+            _dbContext.SaveChanges();
         }
     }
 }
