@@ -32,7 +32,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             return _dbContext.Heroes
                 .Include(h => h.SecretIdentity)
                 .Include(h => h.Powers)
-                .Include(h => h.Films)
+                //.Include(h => h.Films)
                 .First(h => h.HeroId == id); ;
         }
 

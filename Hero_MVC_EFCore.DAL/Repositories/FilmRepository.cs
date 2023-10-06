@@ -15,7 +15,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
             try
             {
                 return _dbContext.Heroes
-                    //.AsNoTracking()
+                    .AsNoTracking()
                     .ToList(); ;
             }
             catch (Exception ex)
@@ -23,6 +23,13 @@ namespace Hero_MVC_EFCore.DAL.Repositories
                 Console.WriteLine($"Erro ao buscar heróis - {ex.Message}");
                 throw new Exception("Erro ao buscar heróis");
             }
+        }
+
+        public override Film GetById(int id)
+        {
+            return _dbContext.Films
+                .Include(f => f.Heroes)
+                .First(f => f.FilmId == id);
         }
 
         public bool IsPresent(Film film, Hero hero)

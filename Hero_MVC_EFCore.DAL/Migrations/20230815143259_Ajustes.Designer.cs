@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hero_MVC_EFCore.DAL.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20230815021201_Alter_FilmsHeroes_ID")]
-    partial class Alter_FilmsHeroes_ID
+    [Migration("20230815143259_Ajustes")]
+    partial class Ajustes
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,19 +25,19 @@ namespace Hero_MVC_EFCore.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("FilmsHeroes", b =>
+            modelBuilder.Entity("FilmHero", b =>
                 {
-                    b.Property<int>("FilmId")
+                    b.Property<int>("FilmsFilmId")
                         .HasColumnType("int");
 
-                    b.Property<int>("HeroId")
+                    b.Property<int>("HeroesHeroId")
                         .HasColumnType("int");
 
-                    b.HasKey("FilmId", "HeroId");
+                    b.HasKey("FilmsFilmId", "HeroesHeroId");
 
-                    b.HasIndex("HeroId");
+                    b.HasIndex("HeroesHeroId");
 
-                    b.ToTable("FilmsHeroes");
+                    b.ToTable("FilmHero");
                 });
 
             modelBuilder.Entity("Hero_MVC_EFCore.Domain.Models.Film", b =>
@@ -151,17 +151,17 @@ namespace Hero_MVC_EFCore.DAL.Migrations
                     b.ToTable("SecretIdentities");
                 });
 
-            modelBuilder.Entity("FilmsHeroes", b =>
+            modelBuilder.Entity("FilmHero", b =>
                 {
                     b.HasOne("Hero_MVC_EFCore.Domain.Models.Film", null)
                         .WithMany()
-                        .HasForeignKey("FilmId")
+                        .HasForeignKey("FilmsFilmId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Hero_MVC_EFCore.Domain.Models.Hero", null)
                         .WithMany()
-                        .HasForeignKey("HeroId")
+                        .HasForeignKey("HeroesHeroId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
