@@ -1,16 +1,17 @@
 # Hero_MVC_EFCore
 
-Projeto autoral de estudo de controle (CRUD) de heróis Web criado em .Net 6
+Projeto de estudo Web Full-stack autoral básico de controle (CRUD) de heróis e relacionamentos para fonte de pesquisa
 
-BackEnd: C#;
+### Tecnologias utilizadas 
 
-FrontEnd: HTML, CSS, Razor
+- Ambiente: .NET 6
+- BackEnd: C#;
+- Framework: ASP.NET MVC
+- FrontEnd: HTML, CSS, Razor
+- ORM/Acesso a dados: Entity Framework
+- Banco de Dados: Microsoft SQL Server
 
-ORM/Acesso a dados: EntityFramework
-
-Obs: Projeto feito com estratégia de modelagem Code-first usando Migrations
-
-Banco de Dados: Microsoft SQL Server
+**Obs: Projeto feito com Repository Pattern**
 
 Relacionamentos: 
 - Identidade Secreta/Herói - 1:1
