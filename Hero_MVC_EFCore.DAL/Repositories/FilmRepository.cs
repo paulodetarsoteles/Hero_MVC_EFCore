@@ -53,8 +53,8 @@ namespace Hero_MVC_EFCore.DAL.Repositories
         public void UpdateHeroes(Film entity)
         {
             List<FilmsHeroes> relations = _dbContext.FilmsHeroes.Where(r => r.FilmId == entity.FilmId).ToList();
-            
-            if (relations.Count > 0 )
+
+            if (relations.Count > 0)
             {
                 _dbContext.FilmsHeroes.RemoveRange(relations);
                 _dbContext.SaveChanges();
@@ -66,7 +66,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories
 
             foreach (var hero in heroes)
             {
-                relations.Add(new FilmsHeroes 
+                relations.Add(new FilmsHeroes
                 {
                     FilmId = entity.FilmId,
                     HeroId = hero.HeroId

@@ -131,7 +131,7 @@ namespace Hero_MVC_EFCore.Web.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 ModelState.AddModelError("", e.Message);
                 return View(_identityViewModelService.GetById(id));

@@ -67,7 +67,7 @@ namespace Hero_MVC_EFCore.DAL.Repositories.Common
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao atualizar entidade - { ex.Message}");
+                Console.WriteLine($"Erro ao atualizar entidade - {ex.Message}");
                 throw new Exception($"Erro ao atualizar entidade");
             }
         }
